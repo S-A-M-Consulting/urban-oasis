@@ -3,7 +3,6 @@ const express = require("express");
 const morgan = require('morgan');
 const path = require('path');
 const cors = require('cors');
-const parkRouter = require('./routes/parks');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -18,7 +17,9 @@ app.use(cors());
 
 const pool = require('./database/connection');
 
-app.use('/api/parks', parkRouter);
+app.use('/api/park', require('./routes/park'));
+app.use('/api/user', require('./routes/user'));
+app.use('/api/review', require('./routes/review'));
 
 
 app.listen(PORT, () => {

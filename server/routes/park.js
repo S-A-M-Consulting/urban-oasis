@@ -12,4 +12,15 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  pool.query("SELECT * FROM parks WHERE id = $1", [id])
+    .then((result) => {
+      res.json(result.rows);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
+
 module.exports = router;

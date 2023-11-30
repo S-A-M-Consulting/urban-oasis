@@ -1,0 +1,1 @@
+INSERT INTO users (name, photo, email, password) VALUES ('Tobias Funke', 'https://picsum.photos/200', 'blueManGroup@hotmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.');
