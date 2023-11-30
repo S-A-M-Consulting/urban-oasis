@@ -1,6 +1,10 @@
 // Navbar.js
 
 import React from 'react';
+import 'tailwindcss/tailwind.css';
+//import '@headlessui/react/styles.css';
+import 'daisyui/dist/full.css';
+
 //import './Navbar.css';
 
 const Navbar = () => {
