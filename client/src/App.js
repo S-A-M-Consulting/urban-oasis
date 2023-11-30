@@ -1,17 +1,40 @@
+import React, { useState, useEffect } from "react";
 import {
   MapContainer,
   Marker,
   TileLayer,
   Popup,
   LayersControl,
+  useMap,
 } from "react-leaflet";
 import "./App.css";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
+
 const { BaseLayer } = LayersControl;
 
+function ChangeMapView({ center }) {
+  const map = useMap();
+  map.setView(center);
+  return null;
+}
+
 function App() {
+  const defaultLocation = [49.044078046834706, -122.81547546331375];
+  const [mapCenter, setMapCenter] = useState(defaultLocation);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setMapCenter([position.coords.latitude, position.coords.longitude]);
+      },
+      (error) => {
+        console.error("Error getting the location: ", error.message);
+      }
+    );
+  }, []);
+
   const parkMarkers = [
     {
       geocode: [49.0297254, -122.8167744],
@@ -29,7 +52,8 @@ function App() {
   });
 
   return (
-    <MapContainer center={[49.02388, -122.801178]} zoom={13}>
+    <MapContainer center={mapCenter} zoom={13}>
+      <ChangeMapView center={mapCenter} />
       <LayersControl position="topright">
         <BaseLayer checked name="Open Street Map">
           {/* Default Leaflet Tiles */}
