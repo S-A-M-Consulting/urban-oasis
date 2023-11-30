@@ -1,5 +1,4 @@
 require('dotenv').config();
-console.log("env", process.env);
 const express = require("express");
 const morgan = require('morgan');
 const path = require('path');
@@ -20,10 +19,6 @@ app.use(cors());
 const pool = require('./database/connection');
 
 app.use('/api/parks', parkRouter);
-
-const query = pool.query("SELECT * FROM items")
-  .then(res => console.log(res.rows))
-  .catch(err => console.log(err.message));
 
 
 app.listen(PORT, () => {
