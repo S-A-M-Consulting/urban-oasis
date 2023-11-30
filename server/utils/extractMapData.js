@@ -6,34 +6,39 @@ const path = require('path');
 
 // Function to make the initial request
 async function makeInitialRequest() {
-  const apiEndpoint = process.env.MAPS_API_ENDPOINT + process.env.MAPS_API_SEARCH_PARAMS;
+  const apiEndpoint =
+    process.env.MAPS_API_ENDPOINT + process.env.MAPS_API_SEARCH_PARAMS;
   console.log("1st apiEndpoint", apiEndpoint);
   const data = await axios.get(apiEndpoint).then((response) => response.data);
   //const data = await response.json();
   //console.log("data", data);
   // Check if there is a next page token
+
+  await delay(2000); // Introducing delay before making the next request
   if (data.next_page_token) {
     // Store the next_page_token for subsequent requests
     const nextPageToken = data.next_page_token;
     //console.log("nextPageToken", nextPageToken);
     // Call a function to make subsequent requests
     const allResults = await fetchNextPage(nextPageToken, [data]);
-    
+
     // Save all results to a single JSON file
-    fs.writeFileSync('all_results.json', JSON.stringify(allResults, null, 2));
+    fs.writeFileSync("all_results.json", JSON.stringify(allResults, null, 2));
 
     // Download images
-    downloadImages(allResults);
+    // downloadImages(allResults);
   }
 }
 
 // Function to make subsequent requests using the next_page_token
 async function fetchNextPage(nextPageToken, allResults) {
-  const apiEndpoint = `${process.env.MAPS_API_ENDPOINT}${process.env.MAPS_API_SEARCH_PARAMS}&pagetoken=${nextPageToken}`
+  const apiEndpoint = `${process.env.MAPS_API_ENDPOINT}${process.env.MAPS_API_SEARCH_PARAMS}&pagetoken=${nextPageToken}`;
 
   console.log("apiEndpoint", apiEndpoint);
   const data = await axios.get(apiEndpoint).then((response) => response.data);
   console.log("length of page", data.results.length);
+
+  await delay(2000); // Introducing delay before making the next request
   //const data = await response.json();
   // Concatenate results from the current page to the array
   allResults.push(data.results);
@@ -81,5 +86,9 @@ async function downloadImage(photoReference) {
   console.log(`Image saved: ${imagePath}`);
 }
 
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 // Start the process
 makeInitialRequest();
