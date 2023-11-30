@@ -9,19 +9,27 @@ import "./App.css";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { convertCoordinatesToList } from './helpers/frontendHelper';
+
 const { BaseLayer } = LayersControl;
 
 function App() {
-  const parkMarkers = [
-    {
-      geocode: [49.0297254, -122.8167744],
-      popup: "Centennial Park",
-    },
-    {
-      geocode: [49.0286915, -122.7847924],
-      popup: "Maccaud Park",
-    },
-  ];
+  const [parkMarkers, setParkMarkers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/api/park")
+      .then((response) => {
+        const covertedParks = convertCoordinatesToList(response.data);
+        setParkMarkers(covertedParks);
+      })
+      .catch((error) => {
+        console.error("Error fetching park data:", error);
+      });
+  }, []);
+   
 
   const customIcon = new Icon({
     iconUrl: require("./img/park.png"),
@@ -62,7 +70,7 @@ function App() {
             // Need to add a key!
             <Marker position={marker.geocode} icon={customIcon}>
               <Popup>
-                <h2>{marker.popup}</h2>
+                <h2>{marker.name}</h2>
               </Popup>
             </Marker>
           ))}
