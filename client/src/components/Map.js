@@ -12,6 +12,7 @@ import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import axios from "axios";
 import { convertCoordinatesToList } from "../helpers/frontendHelper";
+import ContentPopup from "./ContentPopup"
 
 const { BaseLayer } = LayersControl;
 
@@ -107,8 +108,7 @@ export default function Map(props) {
               {parkMarkers.map((marker) => (
                 <Marker position={marker.geocode} icon={customIcon} key={marker.id}>
                   <Popup>
-                    <h2>{marker.name}</h2>
-                    <button className="btn btn-primary" onClick={() => alert(marker.id)}>Add to Favourites</button>
+                    <ContentPopup marker={marker} />
                   </Popup>
                 </Marker>
               ))}

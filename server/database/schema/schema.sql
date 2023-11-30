@@ -15,21 +15,23 @@ CREATE TABLE parks (
     name VARCHAR(255) NOT NULL,
     latitude DECIMAL(9,6) NOT NULL,
     longitude DECIMAL(9,6) NOT NULL,
-    streetAddress TEXT NOT NULL,
-    placeId TEXT,
-    googleRating DECIMAL(2,1)
+    street_address TEXT NOT NULL,
+    place_id TEXT,
+    google_rating DECIMAL(2,1)
 );
 
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
-    parkId INT REFERENCES parks(id),
-    userId INT REFERENCES users(id),
+    park_id INT REFERENCES parks(id),
+    user_id INT REFERENCES users(id),
     rating INT CHECK (rating >= 1 AND rating <= 5),
-    userExperience TEXT,
+    user_experience TEXT,
     playground BOOLEAN NOT NULL,
-    playgroundEquipment TEXT,
+    playground_equipment TEXT,
     bathrooms BOOLEAN NOT NULL,
-    bathroomDescription TEXT,
+    bathroom_description TEXT,
     openArea BOOLEAN NOT NULL,
-    openAreaDescription TEXT
+    openArea_description TEXT
+    dog_friendly BOOLEAN NOT NULL,
+    dog_friendly_description TEXT
 );

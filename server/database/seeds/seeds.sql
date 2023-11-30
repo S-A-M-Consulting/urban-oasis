@@ -2,7 +2,7 @@
 
 INSERT INTO users (name, photo, email, password) VALUES
 ('Michael Bluth', '/images/users/1.png', 'michael.bluth@example.com', 'password'),
-('Lucille Bluth', NULL, 'lucille.bluth@example.com', 'password'),
+('Lucille Bluth', '/images/users/2.png', 'lucille.bluth@example.com', 'password'),
 ('Leslie Knope', NULL, 'leslie.knope@example.com', 'password'),
 ('Ron Swanson', NULL, 'ron.swanson@example.com', 'password'),
 ('Jim Halpert', NULL, 'jim.halpert@example.com', 'password'),
@@ -21,3 +21,4 @@ INSERT INTO users (name, photo, email, password) VALUES
 ('Buster Bluth', NULL, 'buster.bluth@example.com', 'password'),
 ('Tom Haverford', NULL, 'tom.haverford@example.com', 'password'),
 ('Donna Meagle', NULL, 'donna.meagle@example.com', 'password');
+
