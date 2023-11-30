@@ -12,6 +12,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { convertCoordinatesToList } from './helpers/frontendHelper';
+import Navbar from "./components/Navbar";
 
 
 const { BaseLayer } = LayersControl;
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <>
+    <Navbar />
     <MapContainer center={[49.02388, -122.801178]} zoom={13}>
       <LayersControl position="topright">
         <BaseLayer checked name="Open Street Map">
