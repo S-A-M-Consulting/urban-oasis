@@ -104,10 +104,11 @@ export default function Map(props) {
             </BaseLayer>
 
             <MarkerClusterGroup chunkedLoading>
-              {parkMarkers.map((marker, index) => (
-                <Marker position={marker.geocode} icon={customIcon} key={index}>
+              {parkMarkers.map((marker) => (
+                <Marker position={marker.geocode} icon={customIcon} key={marker.id}>
                   <Popup>
                     <h2>{marker.name}</h2>
+                    <button className="btn btn-primary" onClick={() => alert(marker.id)}>Add to Favourites</button>
                   </Popup>
                 </Marker>
               ))}

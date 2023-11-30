@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Map from "./components/Map";
 import "leaflet/dist/leaflet.css";
 import "./App.css";
+import "./index.css";
 
 function App() {
   return (
