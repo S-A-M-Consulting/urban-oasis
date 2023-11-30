@@ -23,4 +23,15 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+  const { name, latitude, longitude, streetAddress, photo, rating } = req.body;
+  pool.query("INSERT INTO parks (name, description, image) VALUES ($1, $2, $3, $4) RETURNING *", [name, location, description, image])
+    .then((result) => {
+      res.json(result.rows);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
+
 module.exports = router;
