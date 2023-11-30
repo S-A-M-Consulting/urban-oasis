@@ -31,7 +31,7 @@ CREATE TABLE reviews (
     bathrooms BOOLEAN NOT NULL,
     bathroom_description TEXT,
     openArea BOOLEAN NOT NULL,
-    openArea_description TEXT
+    openArea_description TEXT,
     dog_friendly BOOLEAN NOT NULL,
     dog_friendly_description TEXT
 );

@@ -32,9 +32,9 @@ const seedParkData = async (data) => {
       name,
       latitude: lat,
       longitude: lng,
-      streetAddress: vicinity,
-      googleRating: rating,
-      placeId: place_id
+      street_address: vicinity,
+      google_rating: rating,
+      place_id: place_id
     };
 
     await axios.post('http://localhost:8080/api/park', parkData);
