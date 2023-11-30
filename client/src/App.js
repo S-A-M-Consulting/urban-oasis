@@ -9,7 +9,7 @@ import "./App.css";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import Navbar from "./components/Navbar";
+
 const { BaseLayer } = LayersControl;
 
 function App() {
@@ -31,7 +31,6 @@ function App() {
 
   return (
     <>
-    <Navbar />
     <MapContainer center={[49.02388, -122.801178]} zoom={13}>
       <LayersControl position="topright">
         <BaseLayer checked name="Open Street Map">
