@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../database/connection');
+const queries = require('../database/queries/queries');
 
 router.get('/', (req, res) => {
-  pool.query("SELECT * FROM parks")
+  queries.getAllParks()
     .then((result) => {
-      res.json(result.rows);
+      res.json(result);
     })
     .catch((err) => {
       console.log(err.message);
@@ -14,9 +15,9 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  pool.query("SELECT * FROM parks WHERE id = $1", [id])
+  queries.getOnePark(id)
     .then((result) => {
-      res.json(result.rows);
+      res.json(result);
     })
     .catch((err) => {
       console.log(err.message);
@@ -24,14 +25,38 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const { name, latitude, longitude, streetAddress, photo, rating } = req.body;
-  pool.query("INSERT INTO parks (name, description, image) VALUES ($1, $2, $3, $4) RETURNING *", [name, location, description, image])
+  const park = req.body;
+  queries.addPark(park)
     .then((result) => {
-      res.json(result.rows);
+      res.json(result);
     })
     .catch((err) => {
       console.log(err.message);
     });
 });
+
+router.patch('/:id', (req, res) => {
+  const { id } = req.params;
+  const park = req.body;
+  queries.updatePark(id, park)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
+
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  queries.deletePark(id)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
+
 
 module.exports = router;
