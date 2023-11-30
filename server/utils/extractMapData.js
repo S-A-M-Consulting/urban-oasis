@@ -26,7 +26,7 @@ async function makeInitialRequest() {
     fs.writeFileSync("all_results.json", JSON.stringify(allResults, null, 2));
 
     // Download images
-    // downloadImages(allResults);
+    //downloadImages(allResults);
   }
 }
 
@@ -74,14 +74,15 @@ async function downloadImage(photoReference) {
   const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${apiKey}`;
 
   const response = await axios.get(imageUrl).then((response) => response.data);
-  const imageBuffer = await response.buffer();
+  console.log(response);
+  //const imageBuffer = await response.buffer();
 
   // Save the image to a folder
   const folderPath = path.join(__dirname, 'images');
   fs.mkdirSync(folderPath, { recursive: true });
 
   const imagePath = path.join(folderPath, `${photoReference}.jpg`);
-  fs.writeFileSync(imagePath, imageBuffer);
+  fs.writeFileSync(imagePath, response);
 
   console.log(`Image saved: ${imagePath}`);
 }
