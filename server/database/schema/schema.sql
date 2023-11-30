@@ -29,7 +29,7 @@ CREATE TABLE reviews (
     playground BOOLEAN NOT NULL,
     playground_equipment TEXT,
     bathrooms BOOLEAN NOT NULL,
-    bathroom_description TEXT,
+    bathrooms_description TEXT,
     openArea BOOLEAN NOT NULL,
     openArea_description TEXT,
     dog_friendly BOOLEAN NOT NULL,

@@ -53,6 +53,12 @@ const runSchemaFiles = async () => {
 }
 
 const runSeedFiles = async () => {
+  console.log('Done seeding tables, reading JSON file...');
+  const data = readJsonFile('./all_results.json');
+  //console.log(data[0].results);
+  await seedParkData(data);
+  console.log('Done reading JSON file.');
+
   console.log('Starting to seed tables...');
   const schemaFiles = fs.readdirSync('./database/seeds');
   for (const fn of schemaFiles) {
@@ -60,12 +66,7 @@ const runSeedFiles = async () => {
     console.log(`\t-> Running ${fn}`);
     await db.query(sql);
   }
-  console.log('Done seeding tables, reading JSON file...');
-  const data = readJsonFile('./all_results.json');
-  //console.log(data[0].results);
-  await seedParkData(data);
-  console.log('Done reading JSON file.');
-
+  
 };
 
 const runResetDb = async () => {
