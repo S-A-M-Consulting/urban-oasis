@@ -1,0 +1,968 @@
+[
+  {
+    "html_attributions": [],
+    "next_page_token": "AWU5eFh0_4s8dUs-MLC5gJp1jshs_IzaqWCtlsXg-ZaJZjumvLAANvj0ZKYRuUA-sk_CHFJkOeFLRjHCtghIXglALcFLy8ISquJ3FiekZaT-YMYgZD4kLmMoAbcXFLMVcWeeyZ6PHhrEW-MCpkPoWPe-0P8Oy3hdfLR9xHifCf280_qBw8O1gX6ASMOb_4ivPswkLebzacmjglr-9IDi0Oy4dvZGobTCnfipPKjTok82yYUi2CPLX-yq69TNcEL1RvcE_OOP82FePYYBnmi8zT1ExWfE4OyBUFQLDtQEJtPG_VieN-7FBDYVI63Yk1XxyUjAIhcF1VFfk1vYG3M01g7mpTRSDaoDyMUng-pyNEs3N_D5a1_uXxb56qr0aRf1SuL-MOOHDpPMozYe9iJP5I-x1V4Ua-Y-vNM47fo9ec7QzLXY9jrXVuBl",
+    "results": [
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.0297254,
+            "lng": -122.8167744
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0309997302915,
+              "lng": -122.8153976697085
+            },
+            "southwest": {
+              "lat": 49.0283017697085,
+              "lng": -122.8180956302915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Centennial Park",
+        "opening_hours": {
+          "open_now": true
+        },
+        "photos": [
+          {
+            "height": 3024,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/117811256308107468046\">Tomson Hu</a>"
+            ],
+            "photo_reference": "AWU5eFh1a0DFygiJHs6V-xuvM071udk5nWNBpcK6XAEBTmEMEKkTnfkajpUQH74GVabSRRd7K14-uTLjhJod7hXT37W2UNcgTjcoCIneuk3w8PoC5Ry1kOwcvq4IBopEnuPmc-81CWfFqD9Zb4CXo9_wyuk592Vg18sVbmesvnEIOVSiEHu3",
+            "width": 4032
+          }
+        ],
+        "place_id": "ChIJfTVo3m_DhVQROiKIk5XgVxo",
+        "plus_code": {
+          "compound_code": "25HM+V7 White Rock, BC, Canada",
+          "global_code": "84XV25HM+V7"
+        },
+        "rating": 4.5,
+        "reference": "ChIJfTVo3m_DhVQROiKIk5XgVxo",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "tourist_attraction",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 532,
+        "vicinity": "14600 North Bluff Road, White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.0286915,
+            "lng": -122.7847924
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0300589802915,
+              "lng": -122.7834428697085
+            },
+            "southwest": {
+              "lat": 49.0273610197085,
+              "lng": -122.7861408302915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Maccaud Park",
+        "opening_hours": {
+          "open_now": false
+        },
+        "photos": [
+          {
+            "height": 2448,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/101855535533873935404\">D.R.F. “BluCrz” Hall</a>"
+            ],
+            "photo_reference": "AWU5eFhiFLZDfsiAXUwxjV-vMleF6nCx0_0K-kuFmS4AmwRQDKtoqStsm3mxWNZt7sFJko0CHA5tFGIGINr-PJjgndLgTn4yHfGqHao_FOckCAMJDnSp8Guq0x_6Vmk2RlPzoOC4KgeT7mWpyuxB35h87HDc7yaZg1Ku8r2It8A3p6Qw87o_",
+            "width": 3264
+          }
+        ],
+        "place_id": "ChIJ3fDSzYDEhVQRxlegI_I-lG4",
+        "plus_code": {
+          "compound_code": "26H8+F3 White Rock, BC, Canada",
+          "global_code": "84XV26H8+F3"
+        },
+        "rating": 4,
+        "reference": "ChIJ3fDSzYDEhVQRxlegI_I-lG4",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 34,
+        "vicinity": "1475 Kent Street, White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.0356042,
+            "lng": -122.7975395
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.03691508029151,
+              "lng": -122.7957787197085
+            },
+            "southwest": {
+              "lat": 49.03421711970851,
+              "lng": -122.7984766802915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Bakerview Park",
+        "opening_hours": {
+          "open_now": true
+        },
+        "photos": [
+          {
+            "height": 3000,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/114803780310663344351\">Aom Hildebrand</a>"
+            ],
+            "photo_reference": "AWU5eFi7v5LaHqovazWFm4rSDer47SfF7mvV6nZhgZzS9EqTMtBLJr2WBqnf-YBCc251sNrJd3B-wDoyn7T5pVRY9Gqp6islgElSIjFtNjbdHIHL29V9GJeKNyILs6QO33YdvFbfzvKhKPgR4Ta9LmGqnmpmmX5nCucLdcr_3tLh7eseSqbS",
+            "width": 4000
+          }
+        ],
+        "place_id": "ChIJBZ1bK53EhVQRWGn8GKccAbM",
+        "plus_code": {
+          "compound_code": "26P2+6X Surrey, BC, Canada",
+          "global_code": "84XV26P2+6X"
+        },
+        "rating": 4.4,
+        "reference": "ChIJBZ1bK53EhVQRWGn8GKccAbM",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "tourist_attraction",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 355,
+        "vicinity": "1845 154 Street, Surrey"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.036703,
+            "lng": -122.793755
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0379750802915,
+              "lng": -122.7924062197085
+            },
+            "southwest": {
+              "lat": 49.0352771197085,
+              "lng": -122.7951041802915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Spruce Park",
+        "opening_hours": {
+          "open_now": false
+        },
+        "photos": [
+          {
+            "height": 2252,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/114295403330243402046\">Bruce</a>"
+            ],
+            "photo_reference": "AWU5eFigyIc6DWmR6vKE1uslAn0dQP0oXOzIsDhhSFrenLDShfMHwP0y8-GUb21NyKQEECWbgg3WD4WaBcroTTDKEc_MS2apVuXbUSH1i4cLhsspdlhmwXJMchM1ztZQml1XaBmcTmLqJ7lroFrilmxwwHgIs0N0UaAEuXs6M0Lc2mxlqgcH",
+            "width": 4000
+          }
+        ],
+        "place_id": "ChIJDQ82qpzEhVQRXPcam9XRXjU",
+        "plus_code": {
+          "compound_code": "26P4+MF Surrey, BC, Canada",
+          "global_code": "84XV26P4+MF"
+        },
+        "rating": 3.3,
+        "reference": "ChIJDQ82qpzEhVQRXPcam9XRXjU",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "tourist_attraction",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 9,
+        "vicinity": "15459 19 Avenue, Surrey"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.034044,
+            "lng": -122.7837329
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0352967302915,
+              "lng": -122.7817353697085
+            },
+            "southwest": {
+              "lat": 49.03259876970851,
+              "lng": -122.7844333302915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Alderwood Park",
+        "opening_hours": {
+          "open_now": false
+        },
+        "photos": [
+          {
+            "height": 2268,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/104559115659515639607\">Steve G</a>"
+            ],
+            "photo_reference": "AWU5eFjDCa40nerV9B-mQesunTOaNQWq_mYdRW3t6kwZpujMtJJb-xxJxgYUNphP5OUVGRv2bocB62x9XpmddhegKmHLq7VcgQU2k4uUYMVNUdvMOsGJT5UU041pD24t7XAeE-HIebgM3h01UWJEjyIqZ-D_dpmohx-1T6nU2eL_x2UzhLjt",
+            "width": 4032
+          }
+        ],
+        "place_id": "ChIJzfyYZIbEhVQRc5ps5SKJ2EY",
+        "plus_code": {
+          "compound_code": "26M8+JG Surrey, BC, Canada",
+          "global_code": "84XV26M8+JG"
+        },
+        "rating": 4.3,
+        "reference": "ChIJzfyYZIbEhVQRc5ps5SKJ2EY",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 68,
+        "vicinity": "1760 Lilac Drive, Surrey"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.0435518,
+            "lng": -122.8085786
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0447989802915,
+              "lng": -122.8072298697085
+            },
+            "southwest": {
+              "lat": 49.0421010197085,
+              "lng": -122.8099278302915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Meridian Park",
+        "opening_hours": {
+          "open_now": false
+        },
+        "photos": [
+          {
+            "height": 4128,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/113155035160066143244\">Shun Ping Tu</a>"
+            ],
+            "photo_reference": "AWU5eFhhQUIR3RhgBiSu-Z-ilEhG1jR99uG985WBstKEcTe4FWeCYeOon3FfH9eegKe11vhDUpsrfhOz4RuOAQ0nZTO1nMl5sFvbu6WFm70gT2ClTYMpMEgyhF6dw31cXSwroR8iYQB1TaHs9G78O6MIaeaumrPd_sP4fXqxMSMMBoK-B76n",
+            "width": 3096
+          }
+        ],
+        "place_id": "ChIJVe6aJqDEhVQRsjTMs-BrpFQ",
+        "plus_code": {
+          "compound_code": "25VR+CH Surrey, BC, Canada",
+          "global_code": "84XV25VR+CH"
+        },
+        "rating": 4,
+        "reference": "ChIJVe6aJqDEhVQRsjTMs-BrpFQ",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 5,
+        "vicinity": "2271 149A Street, Surrey"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.05026649999999,
+            "lng": -122.7939618
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.05109273029149,
+              "lng": -122.7926181697085
+            },
+            "southwest": {
+              "lat": 49.04839476970849,
+              "lng": -122.7953161302915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Sunnyside Park",
+        "opening_hours": {
+          "open_now": false
+        },
+        "photos": [
+          {
+            "height": 4000,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/101541731605174556790\">Brook Yee</a>"
+            ],
+            "photo_reference": "AWU5eFgpzR6bJ5bW1rWpn5sLJOkj-UPh3FjpdTeQt9HgBBFAYNwV1VgkwSrndza1W2tUB8M8w3bvuuWLsPp-b08Pxh-MvQemMlKwmC7LFpsA0vECgrQRqYVTg85Yec0S0QlJoBvjPHNL9aQnnGh9s-Z7DIkRSxX-dlvosiCgAh0Yj7bf2PyG",
+            "width": 3000
+          }
+        ],
+        "place_id": "ChIJX0HLCL3EhVQR6m8lCqHp_z8",
+        "plus_code": {
+          "compound_code": "3624+4C Surrey, BC, Canada",
+          "global_code": "84XV3624+4C"
+        },
+        "rating": 4.4,
+        "reference": "ChIJX0HLCL3EhVQR6m8lCqHp_z8",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 212,
+        "vicinity": "15455 26 Avenue, Surrey"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.02354919999999,
+            "lng": -122.7985997
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0249269802915,
+              "lng": -122.7973324697085
+            },
+            "southwest": {
+              "lat": 49.0222290197085,
+              "lng": -122.8000304302915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Veterans Memorial",
+        "photos": [
+          {
+            "height": 1944,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/101855535533873935404\">D.R.F. “BluCrz” Hall</a>"
+            ],
+            "photo_reference": "AWU5eFgrz3-F_7q-e-VaBSlPaZArH3RGLNYyBpaGXhdC_hg_zW-kd1q8ywnGoKBGfZTk9ZdumbM8YwvVzjehsWcpCa44HLmiH54AAvrAj8kf8v1hP6PFaPWE4vH82thlgFiFjMQDSBuBUMefTTgReouOlxqbbBBerkxEF26gzDHVtiEeOGs-",
+            "width": 2592
+          }
+        ],
+        "place_id": "ChIJqdCfkpDDhVQR4KVGkBY3jy0",
+        "plus_code": {
+          "compound_code": "26F2+CH White Rock, BC, Canada",
+          "global_code": "84XV26F2+CH"
+        },
+        "rating": 4.7,
+        "reference": "ChIJqdCfkpDDhVQR4KVGkBY3jy0",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 3,
+        "vicinity": "White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.0217857,
+            "lng": -122.8009414
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.02321208029151,
+              "lng": -122.7997180197085
+            },
+            "southwest": {
+              "lat": 49.02051411970851,
+              "lng": -122.8024159802915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Stager Park",
+        "opening_hours": {
+          "open_now": false
+        },
+        "photos": [
+          {
+            "height": 1540,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/100546744301408610428\">Jeff Law</a>"
+            ],
+            "photo_reference": "AWU5eFgTCCAlKyjKQs9ni5x-oNXai0yNnPNrWNi8RohnRhYptTvrhv1BB3w99kI12_KZ5wmwfiNUzjoRFv5sa93JoId3n1likM5Cce9GSb29L39AddrrctdeGuMVPQq90x-lGa-orJVZlwqqSrvWTG-oIatXwTtp2hvlxfEMBpVe_ZSqeYL6",
+            "width": 2781
+          }
+        ],
+        "place_id": "ChIJI8zzv4LDhVQRxjWd_VWoOq8",
+        "plus_code": {
+          "compound_code": "25CX+PJ White Rock, BC, Canada",
+          "global_code": "84XV25CX+PJ"
+        },
+        "rating": 4.2,
+        "reference": "ChIJI8zzv4LDhVQRxjWd_VWoOq8",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 11,
+        "vicinity": "15200 Columbia Avenue, White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.0207669,
+            "lng": -122.805227
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.02211588029149,
+              "lng": -122.8038780197085
+            },
+            "southwest": {
+              "lat": 49.0194179197085,
+              "lng": -122.8065759802915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "White Rock Promenade",
+        "opening_hours": {
+          "open_now": true
+        },
+        "photos": [
+          {
+            "height": 3024,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/110010726932899572710\">amritpal79</a>"
+            ],
+            "photo_reference": "AWU5eFgfmsru8PrTiN2-eZWYmqf-MA5hbny4_tvco5RGJ1semT7Rmj90tVuvsS_DZptbrK89GicgWP-PCw1ypBEOGKRGX9o54nLlqNMCqMGbzYEw-0TinCYK5zrnCPDT5Wbui_tX46Rh0jgGUO8PN4vWcZMPOiAYi3YF2Sib1f-wbmncmtvW",
+            "width": 4032
+          }
+        ],
+        "place_id": "ChIJSTrMqJ3DhVQRzdGt7W9-H0o",
+        "plus_code": {
+          "compound_code": "25CV+8W White Rock, BC, Canada",
+          "global_code": "84XV25CV+8W"
+        },
+        "rating": 4.7,
+        "reference": "ChIJSTrMqJ3DhVQRzdGt7W9-H0o",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 404,
+        "vicinity": "White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.02124190000001,
+            "lng": -122.8060466
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0226671802915,
+              "lng": -122.8046434197085
+            },
+            "southwest": {
+              "lat": 49.0199692197085,
+              "lng": -122.8073413802915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Memorial Park",
+        "opening_hours": {
+          "open_now": true
+        },
+        "photos": [
+          {
+            "height": 3648,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/104648294695255539354\">yKitty Shao</a>"
+            ],
+            "photo_reference": "AWU5eFgufynbPhxU07E95fi4lWfPRXEc0Ll_JnoGXGXmADlUdzdB-X3bBCKwxezz4PPxhY15iz7nk8otuRWHIuafPJlwUnQ1KUm9FvUEl05JWYge3t5pfoY636M58tZOHe5kBVk4Wtgl1cRh_b24MrLT62OSk36EMNfEe5k6a3KioKvIFpPM",
+            "width": 2736
+          }
+        ],
+        "place_id": "ChIJAQDAY53DhVQRjxutWh29-Gc",
+        "plus_code": {
+          "compound_code": "25CV+FH White Rock, BC, Canada",
+          "global_code": "84XV25CV+FH"
+        },
+        "rating": 4.7,
+        "reference": "ChIJAQDAY53DhVQRjxutWh29-Gc",
+        "scope": "GOOGLE",
+        "types": [
+          "tourist_attraction",
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 514,
+        "vicinity": "15300 Marine Drive, White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.02801119999999,
+            "lng": -122.8030878
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.02936018029149,
+              "lng": -122.8017388197085
+            },
+            "southwest": {
+              "lat": 49.02666221970849,
+              "lng": -122.8044367802915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Bryant Park",
+        "opening_hours": {
+          "open_now": true
+        },
+        "photos": [
+          {
+            "height": 3072,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/112270924513185507423\">Arnold Machel</a>"
+            ],
+            "photo_reference": "AWU5eFhwklrFgzGX5vnaJxBeul3ck1mijpYcsJbq_RVIjL2ixhGt82zDUPXlXRKnGRj5upyLaYcRg_6owGChe3TWeH4ouEeleJ8S6vmGvfePuNgiZavyngD8auaa1hwuMdV_hTu-j9OSrfvcgP6krxp1dtZc3ipLhwZL9hZDs1S_Yizdz5FC",
+            "width": 4080
+          }
+        ],
+        "place_id": "ChIJ3zuZYuHDhVQR8C6kFXV8c_k",
+        "plus_code": {
+          "compound_code": "25HW+6Q White Rock, BC, Canada",
+          "global_code": "84XV25HW+6Q"
+        },
+        "rating": 3,
+        "reference": "ChIJ3zuZYuHDhVQR8C6kFXV8c_k",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 2,
+        "vicinity": "White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.02863379999999,
+            "lng": -122.8021885
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.02995758029149,
+              "lng": -122.8008037197085
+            },
+            "southwest": {
+              "lat": 49.0272596197085,
+              "lng": -122.8035016802915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Miramar Village Plaza",
+        "place_id": "ChIJ02TyE1LDhVQRrZ2zCvUYykI",
+        "plus_code": {
+          "compound_code": "25HX+F4 White Rock, BC, Canada",
+          "global_code": "84XV25HX+F4"
+        },
+        "reference": "ChIJ02TyE1LDhVQRrZ2zCvUYykI",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "vicinity": "White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.02181880000001,
+            "lng": -122.8081445
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0232091302915,
+              "lng": -122.8067669697085
+            },
+            "southwest": {
+              "lat": 49.0205111697085,
+              "lng": -122.8094649302915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "White Rock Native Plant Demonstration Garden",
+        "photos": [
+          {
+            "height": 3888,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/101558298039408334201\">School of Baccarat</a>"
+            ],
+            "photo_reference": "AWU5eFi73Brrj0SOmNgjVFogoghPqfVaTRrXkzHKsiO3L6h_PKoJVUmW4jjxJu6Z1rflUxZpxauacaDcfZW_liaUC3T1R2qCwfAq9ZbLk411gYsxHWy84CRwaQ2ST3yW4NNOERtwOHYZ3iCJlVxbQJ6FV0H-fiTI9pjBahfvy98l10RGAWk5",
+            "width": 5184
+          }
+        ],
+        "place_id": "ChIJwcjdAuHDhVQRJBtoWd0cjBE",
+        "plus_code": {
+          "compound_code": "25CR+PP White Rock, BC, Canada",
+          "global_code": "84XV25CR+PP"
+        },
+        "reference": "ChIJwcjdAuHDhVQRJBtoWd0cjBE",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "vicinity": "White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.02412229999999,
+            "lng": -122.7933694
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0253512802915,
+              "lng": -122.7920236197085
+            },
+            "southwest": {
+              "lat": 49.0226533197085,
+              "lng": -122.7947215802915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Dr. R. J. Allan Hogg Rotary Park",
+        "opening_hours": {
+          "open_now": false
+        },
+        "photos": [
+          {
+            "height": 4056,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/114214385667241741525\">Gisz L</a>"
+            ],
+            "photo_reference": "AWU5eFjGijj2sdq2N95DAj5mkoSfghVt0eV3tYDFSexHistCmLkPcfdIMnyLi58m_HWNP4J0eRT8x8PQXSnj_diP0_BnkE3UBW_3qkuRW_RmSaWqXfIlj99gF_k5ZBgdAFOvsOFE_j9pPG93v9DKZ14EULiT7k5zly8HfkxPS1sdSHdOWPjO",
+            "width": 2704
+          }
+        ],
+        "place_id": "ChIJAyBVv4HDhVQR5eDqOaZXjYQ",
+        "plus_code": {
+          "compound_code": "26F4+JM White Rock, BC, Canada",
+          "global_code": "84XV26F4+JM"
+        },
+        "rating": 4.3,
+        "reference": "ChIJAyBVv4HDhVQR5eDqOaZXjYQ",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 31,
+        "vicinity": "15497 Buena Vista Avenue, White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.0184144,
+            "lng": -122.7964869
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.01982648029149,
+              "lng": -122.7950940697085
+            },
+            "southwest": {
+              "lat": 49.0171285197085,
+              "lng": -122.7977920302915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Lions Lookout Park",
+        "photos": [
+          {
+            "height": 3000,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/112740353907175549509\">Chris U</a>"
+            ],
+            "photo_reference": "AWU5eFj06nuKvL0ShuLLFHPu3Lecb9RftrgyY2xFKlNozcGEzQFG34huvpwJ0UMw7S62UZkwbxljXx05liCBEdE0akr8oFD_DiTygoDIw73SUHbZTiQVcWEaAScHITfA-1xg8v_OXlTpNPTezap6RqZnLpaUv3FnWcvJCG10t0dlFRUsD58F",
+            "width": 4000
+          }
+        ],
+        "place_id": "ChIJZ5ETTnfDhVQRBB7_AftQyGo",
+        "plus_code": {
+          "compound_code": "2693+9C White Rock, BC, Canada",
+          "global_code": "84XV2693+9C"
+        },
+        "rating": 4.5,
+        "reference": "ChIJZ5ETTnfDhVQRBB7_AftQyGo",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 6,
+        "vicinity": "15400 Marine Drive, White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.0285985,
+            "lng": -122.7930644
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0298312302915,
+              "lng": -122.7917174197085
+            },
+            "southwest": {
+              "lat": 49.0271332697085,
+              "lng": -122.7944153802915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Goggs Park",
+        "opening_hours": {
+          "open_now": true
+        },
+        "place_id": "ChIJIYvNjurDhVQRCWuSmlgNp1I",
+        "plus_code": {
+          "compound_code": "26H4+CQ White Rock, BC, Canada",
+          "global_code": "84XV26H4+CQ"
+        },
+        "reference": "ChIJIYvNjurDhVQRCWuSmlgNp1I",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "vicinity": "15497 Goggs Avenue, White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.022612,
+            "lng": -122.7902999
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0239582802915,
+              "lng": -122.7888752697085
+            },
+            "southwest": {
+              "lat": 49.0212603197085,
+              "lng": -122.7915732302915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Davey Park",
+        "opening_hours": {
+          "open_now": true
+        },
+        "place_id": "ChIJ3wnT_o7DhVQRRgtM-Bfv5IM",
+        "plus_code": {
+          "compound_code": "26F5+2V White Rock, BC, Canada",
+          "global_code": "84XV26F5+2V"
+        },
+        "reference": "ChIJ3wnT_o7DhVQRRgtM-Bfv5IM",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "vicinity": "1131 Finlay Street, White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.0307753,
+            "lng": -122.8048714
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0322742802915,
+              "lng": -122.8035294697085
+            },
+            "southwest": {
+              "lat": 49.0295763197085,
+              "lng": -122.8062274302915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Hodgson Park",
+        "opening_hours": {
+          "open_now": true
+        },
+        "place_id": "ChIJtbNxju_DhVQRv1355K_7gVc",
+        "plus_code": {
+          "compound_code": "25JW+83 White Rock, BC, Canada",
+          "global_code": "84XV25JW+83"
+        },
+        "reference": "ChIJtbNxju_DhVQRv1355K_7gVc",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "vicinity": "15050 North Bluff Road, White Rock"
+      },
+      {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+          "location": {
+            "lat": 49.023501,
+            "lng": -122.812397
+          },
+          "viewport": {
+            "northeast": {
+              "lat": 49.0247710302915,
+              "lng": -122.8111231697085
+            },
+            "southwest": {
+              "lat": 49.0220730697085,
+              "lng": -122.8138211302915
+            }
+          }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+        "icon_background_color": "#4DB546",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+        "name": "Hughes Park",
+        "photos": [
+          {
+            "height": 3786,
+            "html_attributions": [
+              "<a href=\"https://maps.google.com/maps/contrib/104280221102512340656\">jia ding long</a>"
+            ],
+            "photo_reference": "AWU5eFjlrdUgziHJPSM16vNDhYqdcXhBHj6JZpba1jy37zP1uUf3gt-10-9s8wjth1hx7XOEyGu6bR8q8oVafLqzf_OOfYxFINhjXM8rSzJl-jIqDu-frPwBePPVNeZOW3W1EI-n_GvYhFXBJ3YgpgQrOPtZ4-DzrKWDFw2ziaPdnD7DWZz1",
+            "width": 3021
+          }
+        ],
+        "place_id": "ChIJSwuwnBDDhVQRaKUuZRtkG6E",
+        "plus_code": {
+          "compound_code": "25FQ+C2 White Rock, BC, Canada",
+          "global_code": "84XV25FQ+C2"
+        },
+        "rating": 4.4,
+        "reference": "ChIJSwuwnBDDhVQRaKUuZRtkG6E",
+        "scope": "GOOGLE",
+        "types": [
+          "park",
+          "point_of_interest",
+          "establishment"
+        ],
+        "user_ratings_total": 8,
+        "vicinity": "14785 Marine Drive, White Rock"
+      }
+    ],
+    "status": "OK"
+  }
+]

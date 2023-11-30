@@ -15,13 +15,7 @@ const runSchemaFiles = async () => {
 
 const runSeedFiles = async () => {
   console.log(`-> Loading Seeds ...`);
-  const schemaFilenames = fs.readdirSync("./database/seeds");
-
-  for (const fn of schemaFilenames) {
-    const sql = fs.readFileSync(`./database/seeds/${fn}`, "utf8");
-    console.log(`\t-> Running ${fn}`);
-    await db.query(sql);
-  }
+  await axios.post("http://localhost:8080/api/park", {})
 };
 
 const runResetDb = async () => {
