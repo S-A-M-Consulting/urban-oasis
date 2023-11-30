@@ -1,6 +1,6 @@
 //Authored by @mxtchjohnston
 
-const db = require('../connection');
+//const db = require('../database/connection');
 
 const error = clientMsg => error => console.log(clientMsg, error.message);
 
