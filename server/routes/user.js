@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../database/connection');
+const queries = require('../database/queries/queries');
+
 
 router.get('/', (req, res) => {
-  pool.query("SELECT * FROM users")
+  queries.getAllUsers()
     .then((result) => {
-      res.json(result.rows);
+      res.json(result);
     })
     .catch((err) => {
       console.log(err.message);
@@ -14,9 +15,43 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  pool.query("SELECT * FROM users WHERE id = $1", [id])
+  queries.getOneUser(id)
     .then((result) => {
-      res.json(result.rows);
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
+
+router.post('/', (req, res) => {
+  const user = req.body;
+  queries.addUser(user)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
+
+router.patch('/:id', (req, res) => {
+  const { id } = req.params;
+  const user = req.body;
+  queries.updateUser(id, user)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
+
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  queries.deleteUser(id)
+    .then((result) => {
+      res.json(result);
     })
     .catch((err) => {
       console.log(err.message);

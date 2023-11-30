@@ -1,5 +1,5 @@
-const db = require('../database/connection');
-const { error, debug, getAll, getOne, insert, update } = require('../utils/util');
+const db = require('../connection');
+const { error, debug, getAll, getOne, insert, update } = require('../../utils/util');
 
 //parks
 const getAllParks = () => {
@@ -67,13 +67,13 @@ const deleteUser = (id) => {
 //reviews
 
 const getReviewsByPark = (parkId) => {
-  return db.query("SELECT * FROM reviews WHERE park_id = $1", [parkId])
+  return db.query("SELECT * FROM reviews WHERE parkId = $1", [parkId])
   .then(getAll)
   .catch(error('getReviewsByPark'));
 };
 
 const getReviewsByUser = (userId) => {
-  return db.query("SELECT * FROM reviews WHERE user_id = $1", [userId])
+  return db.query("SELECT * FROM reviews WHERE userId = $1", [userId])
   .then(getAll)
   .catch(error('getReviewsByUser'));
 };
@@ -114,4 +114,4 @@ const queries = {
   deleteReview
 };
 
-export default queries; 
+module.exports = queries; 
