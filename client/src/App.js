@@ -13,6 +13,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { convertCoordinatesToList } from './helpers/frontendHelper';
 
+
 const { BaseLayer } = LayersControl;
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
   });
 
   return (
+    <>
     <MapContainer center={[49.02388, -122.801178]} zoom={13}>
       <LayersControl position="topright">
         <BaseLayer checked name="Open Street Map">
@@ -77,6 +79,7 @@ function App() {
         </MarkerClusterGroup>
       </LayersControl>
     </MapContainer>
+    </>
   );
 }
 
