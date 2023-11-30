@@ -16,7 +16,7 @@ CREATE TABLE parks (
     latitude DECIMAL(9,6) NOT NULL,
     longitude DECIMAL(9,6) NOT NULL,
     streetAddress TEXT NOT NULL,
-    photo TEXT,
+    placeId TEXT,
     googleRating DECIMAL(2,1)
 );
 

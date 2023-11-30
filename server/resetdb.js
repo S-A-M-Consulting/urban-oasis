@@ -24,7 +24,7 @@ const seedParkData = async (data) => {
   console.log("starting seed parkData", data.length);
   
   for (const park of data) {
-    const {name, geometry, vicinity, photos, rating} = park;
+    const {name, geometry, vicinity, place_id, rating} = park;
     const {lat, lng} = geometry.location;
     //const photo = photos[0].photo_reference || " ";
 
@@ -33,7 +33,8 @@ const seedParkData = async (data) => {
       latitude: lat,
       longitude: lng,
       streetAddress: vicinity,
-      googleRating: rating
+      googleRating: rating,
+      placeId: place_id
     };
 
     await axios.post('http://localhost:8080/api/park', parkData);
@@ -62,7 +63,7 @@ const runSeedFiles = async () => {
   console.log('Done seeding tables, reading JSON file...');
   const data = readJsonFile('./all_results.json');
   //console.log(data[0].results);
-  await seedParkData(data[0].results);
+  await seedParkData(data);
   console.log('Done reading JSON file.');
 
 };

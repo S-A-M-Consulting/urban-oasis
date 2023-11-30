@@ -10,6 +10,7 @@ async function makeInitialRequest() {
     process.env.MAPS_API_ENDPOINT + process.env.MAPS_API_SEARCH_PARAMS;
   console.log("1st apiEndpoint", apiEndpoint);
   const data = await axios.get(apiEndpoint).then((response) => response.data);
+  console.log("initial pages got: ", data.results.length);
   //const data = await response.json();
   //console.log("data", data);
   // Check if there is a next page token
@@ -20,7 +21,9 @@ async function makeInitialRequest() {
     const nextPageToken = data.next_page_token;
     //console.log("nextPageToken", nextPageToken);
     // Call a function to make subsequent requests
-    const allResults = await fetchNextPage(nextPageToken, [data]);
+    const allResults = await fetchNextPage(nextPageToken, data.results);
+    
+    console.log("how many we get in the json:", allResults.length);
 
     // Save all results to a single JSON file
     fs.writeFileSync("all_results.json", JSON.stringify(allResults, null, 2));
@@ -41,7 +44,7 @@ async function fetchNextPage(nextPageToken, allResults) {
   await delay(2000); // Introducing delay before making the next request
   //const data = await response.json();
   // Concatenate results from the current page to the array
-  allResults.push(data.results);
+  allResults.push(...data.results);
 
   // Check if there is a next page token
   if (data.next_page_token) {
