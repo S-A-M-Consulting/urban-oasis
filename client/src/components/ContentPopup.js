@@ -1,4 +1,6 @@
 export default function ContentPopup({ marker }) {
+
+  
   return (
     <div className="popup-box">
       <div className="box">
