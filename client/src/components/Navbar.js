@@ -10,7 +10,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 //import './Navbar.css';
 
 const Navbar = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const profilePic = isAuthenticated ? user.picture : process.env.PUBLIC_URL + 'user.png';
   return (
     <nav className="navbar bg-base-100">
       <div className='flex-none'>
@@ -23,11 +24,11 @@ const Navbar = () => {
         <div className="form-control">
           <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
         </div>
-        {user ? <LogoutButton/> : <LoginButton />}
+        {isAuthenticated ? <LogoutButton/> : <LoginButton />}
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img alt="Tailwind CSS Navbar component" src={process.env.PUBLIC_URL + 'user.png'} />
+              <img alt="Profile" src={profilePic} />
             </div>
           </div>
           <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
