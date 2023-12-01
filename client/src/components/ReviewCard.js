@@ -30,7 +30,8 @@ export default function ReviewCard({ review, marker }) {
               ${user.name}'s review of ${marker.name}
             </div>
           </div>
-          <h2 className="card-title">{}</h2>
+          <h2 className="card-title">{rating}/5 ⭐️'s</h2>
+          <p>{user.experience}</p>
           <p></p>
           <div className="card-actions justify-end">
             <button className="btn">Buy Now</button>
