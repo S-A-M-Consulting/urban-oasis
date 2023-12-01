@@ -1,6 +1,25 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Icons from "./Icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChildReaching,
+  faToilet,
+  faDog,
+} from "@fortawesome/free-solid-svg-icons";
+import Rating from "./Rating";
+
+// Add the specific icons you want to use to the library
+
+library.add(faToilet)
+library.add(faChildReaching);
+library.add(faDog);
+
+
+
+
+
 export default function ContentPopup({ marker }) {
   console.log(marker.place_id);
   const [imageData, setImageData] = useState([]);
@@ -22,18 +41,30 @@ export default function ContentPopup({ marker }) {
 
   return (
     <>
-      <h2>{marker.name}</h2>
-      <h3>{marker.place_id}</h3>
-      <img src={`data:image/jpeg;base64,${imageData[0]}`} alt="Park" />
-      <button
-        className="btn btn-outline btn-xs btn-accent"
-        onClick={() => document.getElementById("my_modal_1").showModal()}
-      >
-        ...
-      </button>
+      <div>
+        <h2 className="text-center">{marker.name}</h2>
+        <img src={`data:image/jpeg;base64,${imageData[0]}`} alt="Park" />
+        <Rating rating={marker.google_rating}/>
+        <FontAwesomeIcon icon="fa-solid fa-toilet" />
+        <FontAwesomeIcon icon="fa-solid fa-child-reaching" />
+        <FontAwesomeIcon icon="fa-solid fa-dog" />
+        <button
+          className="btn btn-outline btn-xs btn-accent"
+          onClick={() => document.getElementById("my_modal_1").showModal()}
+        >
+          More Info
+        </button>
+      </div>
 
+
+      {/** Modal Refactor later */}
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
+          <div className="modal-action">
+              <form method="dialog">
+                <button className="btn">Close</button>
+              </form>
+          </div>
           <h3 className="font-bold text-lg">{marker.name}</h3>
           <p className="py-4">{marker.street_address}</p>
           <div className="carousel rounded-box carousel-end">
@@ -56,11 +87,7 @@ export default function ContentPopup({ marker }) {
               );
             })}
           </div>
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn">Close</button>
-            </form>
-          </div>
+        {/* Former Location for close button */}
         </div>
       </dialog>
     </>

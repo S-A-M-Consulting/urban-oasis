@@ -23,6 +23,12 @@ export default function Navbar(props) {
     setClickTrigger(coords);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleParkSearch();
+    }
+  };
+
   const handleParkSearch = async () => {
     try {
       // Fetch park details based on the park name entered in the search bar
@@ -51,6 +57,7 @@ export default function Navbar(props) {
   }, [selectedPark]);
   const { user, isAuthenticated, isLoading } = useAuth0();
   const profilePic = isAuthenticated ? user.picture : process.env.PUBLIC_URL + 'user.png';
+
   return (
     <nav className="navbar bg-base-100">
       <div className="flex-none">
@@ -69,10 +76,9 @@ export default function Navbar(props) {
             type="text"
             placeholder="Search for a park..."
             value={parkSearch}
-            onChange={(e) => setParkSearch(e.target.value)}
+            onKeyPress={handleKeyPress}
             className="input input-bordered w-24 md:w-auto"
           />
-          <button onClick={handleParkSearch}>Search</button>
         </div>
         {isAuthenticated ? <LogoutButton/> : <LoginButton />}
         <div className="dropdown dropdown-end">

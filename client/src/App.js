@@ -4,6 +4,7 @@ import Map from "./components/Map";
 import "leaflet/dist/leaflet.css";
 import "./App.css";
 import "./index.css";
+
 import MapContext from "./components/MapContext";
 
 function App() {
