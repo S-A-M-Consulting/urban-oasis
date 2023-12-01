@@ -12,9 +12,14 @@ import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import axios from "axios";
 import { convertCoordinatesToList } from "../helpers/frontendHelper";
-import ContentPopup from "./ContentPopup"
+import ContentPopup from "./ContentPopup";
 
 const { BaseLayer } = LayersControl;
+
+const userIcon = new Icon({
+  iconUrl: require("./../img/pin.png"),
+  iconSize: [38, 38],
+});
 
 function ChangeMapView({ center }) {
   const map = useMap();
@@ -79,7 +84,7 @@ export default function Map(props) {
   };
 
   const customIcon = new Icon({
-    iconUrl: require('./../img/park.png'),
+    iconUrl: require("./../img/park.png"),
     iconSize: [38, 38],
   });
 
@@ -135,10 +140,14 @@ export default function Map(props) {
                 </Marker>
               ))}
             </MarkerClusterGroup>
+            {userLocation !== defaultLocation && (
+              <Marker position={userLocation} icon={userIcon}>
+                <Popup>You are here</Popup>
+              </Marker>
+            )}
           </LayersControl>
         </MapContainer>
       </div>
     </>
   );
-  
 }
