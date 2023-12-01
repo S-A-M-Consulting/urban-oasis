@@ -32,7 +32,7 @@ function ChangeMapView({ center }) {
 }
 
 export default function Map(props) {
-  const [currentZoom, setCurrentZoom] = useState(13); // State to manage current zoom
+  
 
   const defaultLocation = [49.044078046834706, -122.81547546331375];
 
@@ -66,13 +66,11 @@ export default function Map(props) {
         // Trigger a click event on the closest marker
         if (closestMarker) {
           closestMarker.fire("click");
-          console.log("currentZoom", currentZoom);
-          setCurrentZoom(18); // Update zoom level
-          console.log("afterzoom", currentZoom);
+          
         }
       }
     }
-  }, [clickTrigger, currentZoom]);
+  }, [clickTrigger]);
 
   /////////////////
   useEffect(() => {
@@ -136,7 +134,7 @@ export default function Map(props) {
         >
           Go to My Location
         </button>
-        <MapContainer center={props.mapCenter} zoom={currentZoom}>
+        <MapContainer center={props.mapCenter} zoom={13}>
           <ChangeMapView center={props.mapCenter} />
           <LayersControl position="topright">
             <BaseLayer checked name="Open Street Map">
