@@ -13,7 +13,9 @@ function App() {
 
 
   const updateMapCenter = (newCenter) => {
-    setMapCenter(newCenter);
+    if (newCenter) {
+      setMapCenter(newCenter);
+    }
   };
 
   return (

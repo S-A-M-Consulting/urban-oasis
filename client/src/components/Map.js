@@ -25,19 +25,59 @@ const userIcon = new Icon({
   iconSize: [38, 38],
 });
 
+
+
 function ChangeMapView({ center }) {
   const map = useMap();
-  map.setView(center);
+
+  useEffect(() => {
+    if (map && center && center.length === 2) {
+      const [lat, lng] = center;
+      map.setView([lat, lng]);
+    }
+  }, [map, center]);
+
   return null;
 }
 
-export default function Map(props) {
-  
 
+
+export default function Map(props) {
   const defaultLocation = [49.044078046834706, -122.81547546331375];
 
   const [userLocation, setUserLocation] = useState(defaultLocation);
   const [parkMarkers, setParkMarkers] = useState([]);
+
+  // bring all the park data to the frontend
+  useEffect(() => {
+    axios
+      .get("/api/park")
+      .then((response) => {
+        const covertedParks = convertCoordinatesToList(response.data);
+        setParkMarkers(covertedParks);
+      })
+      .catch((error) => {
+        console.error("Error fetching park data:", error);
+      });
+  }, []);
+
+  // use for get user's location
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userCoords = [
+          position.coords.latitude,
+          position.coords.longitude,
+        ];
+        console.log("User Coords:", userCoords);
+        props.updateMapCenter(userCoords);
+        setUserLocation(userCoords);
+      },
+      (error) => {
+        console.error("Error getting the location: ", error.message);
+      }
+    );
+  }, []);
 
   /////////
   const { clickTrigger } = useContext(MapContext);
@@ -66,41 +106,12 @@ export default function Map(props) {
         // Trigger a click event on the closest marker
         if (closestMarker) {
           closestMarker.fire("click");
-          
         }
       }
     }
   }, [clickTrigger]);
 
   /////////////////
-  useEffect(() => {
-    axios
-      .get("/api/park")
-      .then((response) => {
-        const covertedParks = convertCoordinatesToList(response.data);
-        setParkMarkers(covertedParks);
-      })
-      .catch((error) => {
-        console.error("Error fetching park data:", error);
-      });
-  }, []);
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const userCoords = [
-          position.coords.latitude,
-          position.coords.longitude,
-        ];
-        console.log("User Coords:", userCoords);
-        props.updateMapCenter(userCoords);
-        setUserLocation(userCoords);
-      },
-      (error) => {
-        console.error("Error getting the location: ", error.message);
-      }
-    );
-  }, []);
 
   const updateMapToUserLocation = () => {
     navigator.geolocation.getCurrentPosition(
