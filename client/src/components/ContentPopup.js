@@ -30,27 +30,29 @@ export default function ContentPopup({ marker }) {
       axios
         .get(`/api/photo/${marker.place_id}`)
         .then(({ data }) => setImageData(data));
-      axios
-        .get(`/api/review/park/${marker.id}`)
-        .then(({ data }) => setReviews(data));
-      console.log("reviews: ", reviews);
+      axios.get(`/api/review/park/${marker.id}`).then(({ data }) => {
+        setReviews(data);
+        console.log("reviews: ", data); // Log reviews here
+      });
     } catch (error) {
       console.error("Error fetching image:", error);
     }
-  }, []);
+  }, [marker]);
 
   return (
     <>
-      <div>
+      <div className="flex flex-col items-center">
         <h2 className="text-center">{marker.name}</h2>
-        <img src={`data:image/jpeg;base64,${imageData[0]}`} alt="Park" />
+        <img src={`data:image/jpeg;base64,${imageData[0]}`} alt="Park" className="max-h-32 "/>
         <Rating rating={marker.google_rating}/>
-        <FontAwesomeIcon icon="fa-solid fa-toilet" />
-        <FontAwesomeIcon icon="fa-solid fa-child-reaching" />
-        <FontAwesomeIcon icon="fa-solid fa-dog" />
+        <div className="flex space-x-2 my-1">
+          <FontAwesomeIcon icon="fa-solid fa-child-reaching" />
+          <FontAwesomeIcon icon="fa-solid fa-dog" />
+          <FontAwesomeIcon icon="fa-solid fa-toilet" />
+        </div>
         <button
           className="btn btn-outline btn-xs btn-accent"
-          onClick={() => document.getElementById("my_modal_1").showModal()}
+          onClick={() => document.getElementById("modal").showModal()}
         >
           More Info
         </button>
@@ -58,7 +60,7 @@ export default function ContentPopup({ marker }) {
 
 
       {/** Modal Refactor later */}
-      <dialog id="my_modal_1" className="modal">
+      <dialog id="modal" className="modal">
         <div className="modal-box">
           <div className="modal-action">
               <form method="dialog">

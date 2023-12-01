@@ -1,21 +1,24 @@
 export default function Rating({ rating }) {
   const normalizedRating = Math.round(rating * 2) / 2;
 
-  return generateStars( normalizedRating, true );
+  return generateStars( rating, true );
 }
 
-const generateStars = (index, checked) => {
+const generateStars = (index) => {
   const stars = [];
+  const checkedIndex = Math.floor(index * 2) - 1;
   for (let i = 0; i < 10; i++) {
     const isHalfStar = i % 2 === 1;
-    const isChecked = checked && Math.floor(index) === i / 2;
-
+    const isChecked = Math.floor(index) === i / 2;
+    
     stars.push(
       <input
         key={i}
         type="radio"
         name="rating-10"
-        className={`bg-accent mask mask-star-2 ${isHalfStar ? 'mask-half-2' : 'mask-half-1'}`}
+        className={`mask mask-star-2 ${
+          isHalfStar ? 'mask-half-2' : 'mask-half-1'
+        } ${i <= checkedIndex ? 'bg-accent' : ''}`}
         disabled
         checked={isChecked}
       />
