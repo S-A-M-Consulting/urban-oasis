@@ -57,6 +57,23 @@ export default function Map(props) {
     );
   }, []);
 
+  const updateMapToUserLocation = () => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userCoords = [
+          position.coords.latitude,
+          position.coords.longitude,
+        ];
+        console.log("User Coords:", userCoords);
+        setMapCenter(userCoords);
+        setUserLocation(userCoords);
+      },
+      (error) => {
+        console.error("Error getting the location: ", error.message);
+      }
+    );
+  };
+
   const goToUserLocation = () => {
     setMapCenter(userLocation); // Set map center to user's location
   };
@@ -71,7 +88,7 @@ export default function Map(props) {
       <div id="leaflet-container">
         <button
           className="btn btn-primary btn-xs btn-accent mb-4"
-          onClick={goToUserLocation}
+          onClick={updateMapToUserLocation}
           style={{ position: "absolute", bottom: 20, right: 10, zIndex: 1000 }}
         >
           Go to My Location
@@ -107,7 +124,11 @@ export default function Map(props) {
 
             <MarkerClusterGroup chunkedLoading>
               {parkMarkers.map((marker) => (
-                <Marker position={marker.geocode} icon={customIcon} key={marker.id}>
+                <Marker
+                  position={marker.geocode}
+                  icon={customIcon}
+                  key={marker.id}
+                >
                   <Popup>
                     <ContentPopup marker={marker} />
                   </Popup>
