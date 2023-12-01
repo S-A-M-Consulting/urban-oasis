@@ -16,6 +16,8 @@ import ContentPopup from "./ContentPopup";
 
 const { BaseLayer } = LayersControl;
 
+const val = "Dummy value";
+
 const userIcon = new Icon({
   iconUrl: require("./../img/pin.png"),
   iconSize: [38, 38],
