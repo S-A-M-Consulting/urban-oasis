@@ -4,10 +4,13 @@ import React from 'react';
 import 'tailwindcss/tailwind.css';
 //import '@headlessui/react/styles.css';
 import 'daisyui/dist/full.css';
-
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
+import { useAuth0 } from "@auth0/auth0-react";
 //import './Navbar.css';
 
 const Navbar = () => {
+  const { user } = useAuth0();
   return (
     <nav className="navbar bg-base-100">
       <div className='flex-none'>
@@ -23,6 +26,7 @@ const Navbar = () => {
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
+              {user ? <LogoutButton/> : <LoginButton />}
               <img alt="Tailwind CSS Navbar component" src={process.env.PUBLIC_URL + 'user.png'} />
             </div>
           </div>
