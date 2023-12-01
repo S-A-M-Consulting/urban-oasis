@@ -1,6 +1,10 @@
 // Navbar.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import MapContext from "./MapContext";
+import { useContext } from "react";
+
+
 
 import 'tailwindcss/tailwind.css';
 //import '@headlessui/react/styles.css';
@@ -8,29 +12,37 @@ import 'daisyui/dist/full.css';
 
 //import './Navbar.css';
 
-const Navbar = () => {
+export default function Navbar(props) {
   const [parkSearch, setParkSearch] = useState("");
-  const [selectedPark, setSelectedPark] = useState(null);
+  const [selectedPark, setSelectedPark] = useState([]);
+  const { setClickTrigger } = useContext(MapContext);
+
+  const handleMarkerClick = (coords) => {
+    setClickTrigger(coords);
+  };
 
   const handleParkSearch = async () => {
     try {
       // Fetch park details based on the park name entered in the search bar
       const response = await axios.get(`/api/park/name/${parkSearch}`);
-      console.log(response.data);
-      if (response.data.length > 0) {
-        setSelectedPark(response.data); // Select the first park from the search result
-      } else {
-        setSelectedPark(null); // Reset selected park if no result found
-      }
+      console.log("park data:", response.data);
+      setSelectedPark([response.data.latitude, response.data.longitude]);
+      
     } catch (error) {
       console.error("Error searching for park:", error);
     }
   };
 
+  
+
   useEffect(() => {
     if (selectedPark) {
-      // Update map center to the selected park's location
-      // Code to set the map center goes here...
+
+      console.log("hit here in the useEffect");
+      console.log("selectedPark", selectedPark);
+      props.updateMapCenter(selectedPark);
+      handleMarkerClick(selectedPark);
+  
       // Also, trigger a click event on the selected park's marker
       // This can be achieved by setting a state variable to the selected park's ID and passing it to the marker component as a prop
     }
@@ -91,4 +103,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+

@@ -13,6 +13,10 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import axios from "axios";
 import { convertCoordinatesToList } from "../helpers/frontendHelper";
 import ContentPopup from "./ContentPopup";
+import MapContext from "./MapContext";
+import { useContext } from "react";
+import { useRef } from "react";
+
 
 const { BaseLayer } = LayersControl;
 
@@ -28,11 +32,49 @@ function ChangeMapView({ center }) {
 }
 
 export default function Map(props) {
+  const [currentZoom, setCurrentZoom] = useState(13); // State to manage current zoom
+
   const defaultLocation = [49.044078046834706, -122.81547546331375];
-  const [mapCenter, setMapCenter] = useState(defaultLocation);
+
   const [userLocation, setUserLocation] = useState(defaultLocation);
   const [parkMarkers, setParkMarkers] = useState([]);
 
+  /////////
+  const { clickTrigger } = useContext(MapContext);
+  const markers = useRef({}); // Store markers in a ref
+
+  useEffect(() => {
+    if (clickTrigger && clickTrigger.length === 2) {
+      const [lat, lng] = clickTrigger;
+
+      // Check if the markers have loaded
+      if (Object.keys(markers.current).length > 0) {
+        // Find the marker closest to the clicked coordinates
+        let closestMarker = null;
+        let minDistance = Number.MAX_VALUE;
+
+        Object.values(markers.current).forEach((marker) => {
+          const markerLatLng = marker.getLatLng();
+          const distance = markerLatLng.distanceTo([lat, lng]);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestMarker = marker;
+          }
+        });
+
+        // Trigger a click event on the closest marker
+        if (closestMarker) {
+          closestMarker.fire("click");
+          console.log("currentZoom", currentZoom);
+          setCurrentZoom(18); // Update zoom level
+          console.log("afterzoom", currentZoom);
+        }
+      }
+    }
+  }, [clickTrigger, currentZoom]);
+
+  /////////////////
   useEffect(() => {
     axios
       .get("/api/park")
@@ -53,7 +95,7 @@ export default function Map(props) {
           position.coords.longitude,
         ];
         console.log("User Coords:", userCoords);
-        setMapCenter(userCoords);
+        props.updateMapCenter(userCoords);
         setUserLocation(userCoords);
       },
       (error) => {
@@ -70,17 +112,13 @@ export default function Map(props) {
           position.coords.longitude,
         ];
         console.log("User Coords:", userCoords);
-        setMapCenter(userCoords);
+        props.updateMapCenter(userCoords);
         setUserLocation(userCoords);
       },
       (error) => {
         console.error("Error getting the location: ", error.message);
       }
     );
-  };
-
-  const goToUserLocation = () => {
-    setMapCenter(userLocation); // Set map center to user's location
   };
 
   const customIcon = new Icon({
@@ -98,8 +136,8 @@ export default function Map(props) {
         >
           Go to My Location
         </button>
-        <MapContainer center={mapCenter} zoom={13}>
-          <ChangeMapView center={mapCenter} />
+        <MapContainer center={props.mapCenter} zoom={currentZoom}>
+          <ChangeMapView center={props.mapCenter} />
           <LayersControl position="topright">
             <BaseLayer checked name="Open Street Map">
               {/* Default Leaflet Tiles */}
@@ -133,6 +171,11 @@ export default function Map(props) {
                   position={marker.geocode}
                   icon={customIcon}
                   key={marker.id}
+                  ref={(markerRef) => {
+                    if (markerRef) {
+                      markers.current[marker.id] = markerRef;
+                    }
+                  }}
                 >
                   <Popup>
                     <ContentPopup marker={marker} />
