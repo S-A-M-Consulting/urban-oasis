@@ -14,6 +14,13 @@ const getOnePark = (id) => {
   .catch(error('getOnePark'));
 };
 
+const getParkByName = (name) => {
+  return db
+    .query("SELECT * FROM parks WHERE name = $1", [name])
+    .then(getOne)
+    .catch(error("getParkByName"));
+};
+
 const addPark = (park) => {
   return insert(db, 'parks', park)
   .then(getOne)
@@ -111,7 +118,8 @@ const queries = {
   getReviewsByUser,
   addReview,
   updateReview,
-  deleteReview
+  deleteReview,
+  getParkByName,
 };
 
 module.exports = queries; 

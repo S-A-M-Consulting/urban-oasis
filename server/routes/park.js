@@ -15,7 +15,19 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  queries.getOnePark(id)
+  queries.getParkByName(id)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
+
+router.get("/name/:name", (req, res) => {
+  const { name } = req.params;
+  queries
+    .getParkByName(name)
     .then((result) => {
       res.json(result);
     })
