@@ -46,8 +46,8 @@ export default function Navbar(props) {
   useEffect(() => {
     if (selectedPark) {
 
-      console.log("hit here in the useEffect");
-      console.log("selectedPark", selectedPark);
+      // console.log("hit here in the useEffect");
+      // console.log("selectedPark", selectedPark);
       props.updateMapCenter(selectedPark);
       handleMarkerClick(selectedPark);
   

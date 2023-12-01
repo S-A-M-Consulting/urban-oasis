@@ -9,6 +9,7 @@ import {
   faDog,
 } from "@fortawesome/free-solid-svg-icons";
 import Rating from "./Rating";
+import ReviewCard from "./ReviewCard";
 
 // Add the specific icons you want to use to the library
 
@@ -21,7 +22,7 @@ library.add(faDog);
 
 
 export default function ContentPopup({ marker }) {
-  console.log(marker.place_id);
+  //console.log(marker.place_id);
   const [imageData, setImageData] = useState([]);
   const [reviews, setReviews] = useState([]);
 
@@ -32,23 +33,27 @@ export default function ContentPopup({ marker }) {
         .then(({ data }) => setImageData(data));
       axios.get(`/api/review/park/${marker.id}`).then(({ data }) => {
         setReviews(data);
-        console.log("reviews: ", data); // Log reviews here
+        //console.log("reviews: ", data); // Log reviews here
       });
     } catch (error) {
       console.error("Error fetching image:", error);
     }
   }, [marker]);
 
+  const hasToiletReview = reviews.length > 0 && reviews[0].bathrooms;
+ const hasChildFriendlyReview = reviews.length > 0 && reviews[0].playground;
+ const hasDogFriendlyReview = reviews.length > 0 && reviews[0].dog_friendly;
+
   return (
     <>
       <div className="flex flex-col items-center">
         <h2 className="text-center">{marker.name}</h2>
-        <img src={`data:image/jpeg;base64,${imageData[0]}`} alt="Park" className="max-h-32 "/>
+        <img src={`data:image/jpeg;base64,${imageData[0]}`} alt="Park" className="max-h-32 rounded-lg"/>
         <Rating rating={marker.google_rating}/>
         <div className="flex space-x-2 my-1">
-          <FontAwesomeIcon icon="fa-solid fa-child-reaching" />
-          <FontAwesomeIcon icon="fa-solid fa-dog" />
-          <FontAwesomeIcon icon="fa-solid fa-toilet" />
+          {hasToiletReview && <FontAwesomeIcon icon="fa-solid fa-toilet" />}
+          {hasChildFriendlyReview && <FontAwesomeIcon icon="fa-solid fa-child-reaching" />}
+          {hasDogFriendlyReview && <FontAwesomeIcon icon="fa-solid fa-dog" />}
         </div>
         <button
           className="btn btn-outline btn-xs btn-accent"
@@ -60,7 +65,7 @@ export default function ContentPopup({ marker }) {
 
 
       {/** Modal Refactor later */}
-      <dialog id="modal" className="modal">
+      <dialog id="modal" className="modal text-accent">
         <div className="modal-box">
           <div className="modal-action">
               <form method="dialog">
@@ -69,27 +74,27 @@ export default function ContentPopup({ marker }) {
           </div>
           <h3 className="font-bold text-lg">{marker.name}</h3>
           <p className="py-4">{marker.street_address}</p>
-          <div className="carousel rounded-box carousel-end">
+          <div className="carousel rounded-box carousel-end max-h-64">
             {imageData.map((image, index) => {
               return (
                 <div key={index} className="carousel-item">
-                  <img src={`data:image/jpeg;base64,${image}`} alt="Park" />
+                  <img src={`data:image/jpeg;base64,${image}`} alt="Park"  
+                  style={{
+                      width: "100%",
+                      height: "300px",
+                      objectFit: "cover",
+                      borderRadius: "8px",
+                    }} />
                 </div>
               );
             })}
           </div>
           <h2>Reviews</h2>
-          <div className="carousel rounded-box carousel-end">
-            {reviews.map((review, index) => {
-              return (
-                <div key={index} className="carousel-item">
-                  <p>{review.user_experience}</p>
-                  {/* <Icons {...review}/> */}
-                </div>
-              );
+          <div className="carousel rounded-box carousel-end max-h-64">
+            {reviews.map((review) => {
+              return (<ReviewCard key={review.id} review={review} marker={marker} />);
             })}
           </div>
-        {/* Former Location for close button */}
         </div>
       </dialog>
     </>
