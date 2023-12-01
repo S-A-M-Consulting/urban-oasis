@@ -20,6 +20,7 @@ const pool = require('./database/connection');
 app.use('/api/park', require('./routes/park'));
 app.use('/api/user', require('./routes/user'));
 app.use('/api/review', require('./routes/review'));
+app.use('/api/photo', require('./routes/photo'));
 
 
 app.listen(PORT, () => {
