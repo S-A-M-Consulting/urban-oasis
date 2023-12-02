@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useAuth0 } from '@auth0/auth0-react';
 
-
-export default function SubmitUserReview(props) {
+export default function SubmitUserReview({park, user}) {
   const [reviewContent, setReviewContent] = useState('');
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
 
   const handleReviewContentChange = (event) => {
     setReviewContent(event.target.value);
@@ -19,7 +17,29 @@ export default function SubmitUserReview(props) {
     event.preventDefault();
     
     // Perform actions with the reviewContent and rating, e.g., submit to the server
+    const review = { 
+      user_id: 1,
+      park_id: park.id,
+      user_experience: reviewContent,
+      rating: rating,
+      playground: true,
+      dog_friendly: true,
+      bathrooms: true,
+      openarea: true,
+      playground_equipment: "This is a playground",
+      dog_friendly_description: "This is a dog friendly park",
+      bathrooms_description: "This is a bathroom",
+      openarea_description: "This is an open area"
+    };
 
+    console.log("review: ", review);
+    
+    axios.post('/api/review', review).then(({ data }) => {
+      console.log(data);
+    }).catch((error) => {
+      console.error(error);
+    })
+ 
     // Reset the form after submission
     setReviewContent('');
     setRating(0);
@@ -41,6 +61,9 @@ export default function SubmitUserReview(props) {
               onChange={handleReviewContentChange}
             ></textarea>
           </div>
+          <button type="submit" className="btn btn-accent mt-2" onClick={handleSubmit}>
+            Submit
+          </button>
           <div className="form-group rating flex-row justify-center">
             {[1, 2, 3, 4, 5].map((value) => (
               <input
@@ -54,9 +77,7 @@ export default function SubmitUserReview(props) {
               />
             ))}
           </div>
-          <button type="submit" className="btn btn-accent mt-2">
-            Submit
-          </button>
+          
         </form>
       </div>
     </div>

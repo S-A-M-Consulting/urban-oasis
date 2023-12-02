@@ -48,7 +48,7 @@ export default function ContentPopup({ marker }) {
   return (
     <>
       <div className="flex flex-col items-center">
-        <h2 className="text-center">{marker.name}</h2>
+        <h2 className="text-center text-accent font-bold">{marker.name}</h2>
         <img src={`data:image/jpeg;base64,${imageData[0]}`} alt="Park" className="max-h-32 rounded-lg"/>
         <Rating rating={marker.google_rating}/>
         <div className="flex space-x-2 my-1">
@@ -90,7 +90,7 @@ export default function ContentPopup({ marker }) {
               );
             })}
           </div>
-          <SubmitUserReview marker={marker} />
+          <SubmitUserReview park={marker} />
           <h2>Reviews</h2>
           <div className="flex flex-col items-center">
             {reviews.map((review) => {

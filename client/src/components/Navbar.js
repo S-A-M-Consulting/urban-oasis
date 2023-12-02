@@ -41,6 +41,7 @@ export default function Navbar(props) {
       } else {
         // If no data is received, assume park not found
         setSearchError("Park not found. Please try again.");
+        setParkSearch("")
         setSelectedPark([]); // Reset selectedPark if search fails
 
         // Clear the error message after 2 seconds

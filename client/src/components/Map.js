@@ -189,7 +189,7 @@ export default function Map(props) {
                   }}
                 >
                   <Popup offset={[-10, -20]}>
-                    <ContentPopup marker={marker} />
+                    <ContentPopup marker={marker}/>
                   </Popup>
                 </Marker>
               ))}
