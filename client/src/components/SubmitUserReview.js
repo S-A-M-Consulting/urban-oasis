@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function SubmitUserReview({ park, user, addReview }) {
+export default function SubmitUserReview({ park, addReview }) {
   const [reviewContent, setReviewContent] = useState("");
   const [rating, setRating] = useState(5);
 
@@ -23,8 +23,6 @@ export default function SubmitUserReview({ park, user, addReview }) {
       review: reviewContent,
       rating: rating
     };
-
-    console.log("review: ", review);
 
     axios
       .post("/api/review", review)

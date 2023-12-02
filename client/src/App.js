@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
-      const response = axios.get(`/api/user/email/${user.email}`)
+      axios.get(`/api/user/email/${user.email}`)
         .then((result) => result.data)
         .then((data) => {
           if (!data) {
@@ -43,7 +43,6 @@ function App() {
           }
         })
         .catch((err) => console.log(err.message));
-      console.log("user data:", sessionStorage.getItem('user_id') ); 
     }
   }, [user]);
 
