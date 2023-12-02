@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import {
   MapContainer,
   Marker,
@@ -14,9 +14,7 @@ import axios from "axios";
 import { convertCoordinatesToList } from "../helpers/frontendHelper";
 import ContentPopup from "./ContentPopup";
 import MapContext from "./MapContext";
-import { useContext } from "react";
-import { useRef } from "react";
-
+import ToggleView from "./toggleView";
 
 const { BaseLayer } = LayersControl;
 
@@ -26,8 +24,6 @@ const userIcon = new Icon({
   iconUrl: require("./../img/pin.png"),
   iconSize: [38, 38],
 });
-
-
 
 function ChangeMapView({ center }) {
   const map = useMap();
@@ -42,13 +38,36 @@ function ChangeMapView({ center }) {
   return null;
 }
 
-
-
 export default function Map(props) {
   const defaultLocation = [49.044078046834706, -122.81547546331375];
 
   const [userLocation, setUserLocation] = useState(defaultLocation);
   const [parkMarkers, setParkMarkers] = useState([]);
+  const [showToilets, setShowToilets] = useState(true);
+  const [showPlaygrounds, setShowPlaygrounds] = useState(true);
+  const [showDogFriendly, setShowDogFriendly] = useState(true);
+
+  const handleToiletsChange = (event) => {
+    setShowToilets((prevState) => !prevState);
+    const noToilets = [...parkMarkers].filter((marker) => marker.restrooms);
+    setParkMarkers(noToilets);
+  };
+
+  const handlePlaygroundsChange = (event) => {
+    setShowPlaygrounds((prevState) => !prevState);
+    const noPlaygrounds = [...parkMarkers].filter(
+      (marker) => marker.playground
+    );
+    setParkMarkers(noPlaygrounds);
+  };
+
+  const handleDogFriendlyChange = (event) => {
+    setShowDogFriendly((prevState) => !prevState);
+    const noDogfriendly = [...parkMarkers].filter(
+      (marker) => marker.dog_friendly
+    );
+    setParkMarkers(noDogfriendly);
+  };
 
   // bring all the park data to the frontend
   useEffect(() => {
@@ -57,6 +76,7 @@ export default function Map(props) {
       .then((response) => {
         const covertedParks = convertCoordinatesToList(response.data);
         setParkMarkers(covertedParks);
+        console.log(covertedParks);
       })
       .catch((error) => {
         console.error("Error fetching park data:", error);
@@ -146,6 +166,28 @@ export default function Map(props) {
         >
           Go to My Location
         </button>
+        <button
+          className="btn btn-primary btn-xs btn-accent mb-4"
+          onClick={handlePlaygroundsChange}
+          style={{ position: "absolute", bottom: 50, right: 10, zIndex: 1000 }}
+        >
+          No kids
+        </button>
+        <button
+          className="btn btn-primary btn-xs btn-accent mb-4"
+          onClick={handleToiletsChange}
+          style={{ position: "absolute", bottom: 70, right: 10, zIndex: 1000 }}
+        >
+          No Toilets
+        </button>
+        <button
+          className="btn btn-primary btn-xs btn-accent mb-4"
+          onClick={handleDogFriendlyChange}
+          style={{ position: "absolute", bottom: 90, right: 10, zIndex: 1000 }}
+        >
+          No Dogs
+        </button>
+
         <MapContainer center={props.mapCenter} zoom={13}>
           <ChangeMapView center={props.mapCenter} />
           <LayersControl position="topright">
