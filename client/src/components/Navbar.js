@@ -18,6 +18,7 @@ export default function Navbar(props) {
   const [parkSearch, setParkSearch] = useState("");
   const [selectedPark, setSelectedPark] = useState([]);
   const { setClickTrigger } = useContext(MapContext);
+  const [searchError, setSearchError] = useState("");
 
   const handleMarkerClick = (coords) => {
     setClickTrigger(coords);
@@ -34,10 +35,28 @@ export default function Navbar(props) {
       // Fetch park details based on the park name entered in the search bar
       const response = await axios.get(`/api/park/name/${parkSearch}`);
       console.log("park data:", response.data);
-      setSelectedPark([response.data.latitude, response.data.longitude]);
-      
+      if (response.data && Object.keys(response.data).length !== 0) {
+        setSelectedPark([response.data.latitude, response.data.longitude]);
+        setSearchError(""); // Clear any previous error messages on successful search
+      } else {
+        // If no data is received, assume park not found
+        setSearchError("Park not found. Please try again.");
+        setSelectedPark([]); // Reset selectedPark if search fails
+
+        // Clear the error message after 2 seconds
+        setTimeout(() => {
+          setSearchError("");
+        }, 2000);
+      }
     } catch (error) {
       console.error("Error searching for park:", error);
+      setSearchError("Error searching for park. Please try again.");
+      setSelectedPark([]); // Reset selectedPark if search fails
+
+      // Clear the error message after 2 seconds
+      setTimeout(() => {
+        setSearchError("");
+      }, 2000);
     }
   };
 
@@ -77,10 +96,17 @@ export default function Navbar(props) {
             placeholder="Search for a park..."
             value={parkSearch}
             onKeyPress={handleKeyPress}
+            onChange={(e) => setParkSearch(e.target.value)}
             className="input input-bordered w-24 md:w-auto"
           />
         </div>
         {isAuthenticated ? <LogoutButton/> : <LoginButton />}
+        {searchError && (
+          <div className="absolute top-12 right-4 bg-red-200 border border-red-500 text-red-700 px-4 py-2 rounded shadow-md">
+            {searchError}
+            {console.log("hit in the error")}
+          </div>
+        )}
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}

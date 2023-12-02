@@ -73,7 +73,7 @@ export default function ContentPopup({ marker }) {
                 <button className="btn">Close</button>
               </form>
           </div>
-          <h3 className="font-bold text-lg">{marker.name}</h3>
+          <h1 className="font-bold text-xl">{marker.name}</h1>
           <p className="py-4">{marker.street_address}</p>
           <div className="carousel rounded-box carousel-end max-h-64">
             {imageData.map((image, index) => {
@@ -90,13 +90,16 @@ export default function ContentPopup({ marker }) {
               );
             })}
           </div>
+          <SubmitUserReview marker={marker} />
           <h2>Reviews</h2>
-          <div className="carousel rounded-box carousel-end max-h-64 over">
+          <div className="flex flex-col items-center">
             {reviews.map((review) => {
-              return (<ReviewCard key={review.id} review={review} marker={marker} />);
+              return (
+                <ReviewCard key={review.id} review={review} marker={marker} />
+              );
             })}
           </div>
-            < SubmitUserReview marker={marker} />
+            
           </div>
         
       </dialog>

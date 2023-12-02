@@ -14,9 +14,21 @@ const getOnePark = (id) => {
   .catch(error('getOnePark'));
 };
 
-const getParkByName = (name) => {
+const getParkByName = (searchTerm) => {
+  const searchWords = searchTerm.split(" ").filter(Boolean); // Split search term into words
+
+  // Construct a dynamic query to search for partial matches on each word
+  const query = `
+    SELECT * FROM parks
+    WHERE ${searchWords
+      .map(
+        (word, index) => `LOWER(name) LIKE LOWER('%' || $${index + 1} || '%')`
+      )
+      .join(" AND ")}
+  `;
+
   return db
-    .query("SELECT * FROM parks WHERE name = $1", [name])
+    .query(query, searchWords)
     .then(getOne)
     .catch(error("getParkByName"));
 };
