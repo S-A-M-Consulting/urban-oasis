@@ -55,11 +55,11 @@ export default function ContentPopup({ marker, userLocation }) {
     <>
       <div className="flex flex-col items-center">
         <h2 className="text-center text-accent font-bold">{marker.name}</h2>
-        <img
+        {!imageData[0] ? <span className="loading loading-spinner loading-lg text-accent"></span> : <img
           src={`data:image/jpeg;base64,${imageData[0]}`}
           alt="Park"
           className="max-h-32 rounded-lg"
-        />
+        />}
         <Rating rating={marker.google_rating} />
         <div className="flex space-x-2 my-1">
           {userLocation && parkLocation && <i>{calculateDistance(userLocation[0],userLocation[1], parkLocation[0],parkLocation[1]) } km</i>}
