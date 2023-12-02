@@ -20,16 +20,8 @@ export default function SubmitUserReview({ park, user, addReview }) {
     const review = {
       user_id: 1,
       park_id: park.id,
-      user_experience: reviewContent,
-      rating: rating,
-      playground: true,
-      dog_friendly: true,
-      bathrooms: true,
-      openarea: true,
-      playground_equipment: "This is a playground",
-      dog_friendly_description: "This is a dog friendly park",
-      bathrooms_description: "This is a bathroom",
-      openarea_description: "This is an open area",
+      review: reviewContent,
+      rating: rating
     };
 
     console.log("review: ", review);

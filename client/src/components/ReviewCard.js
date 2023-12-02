@@ -27,7 +27,7 @@ export default function ReviewCard({ review, marker }) {
           </div>
           <div className="chat-bubble  break-words">
             <article className="break-words">
-              {user.name} says {review.user_experience}
+              {user.name} says {review.review}
             </article>
           </div>
         </div>

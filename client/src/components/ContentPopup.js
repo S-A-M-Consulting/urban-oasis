@@ -23,7 +23,7 @@ library.add(faDog);
 
 
 export default function ContentPopup({ marker }) {
-  //console.log(marker.place_id);
+  
   const [imageData, setImageData] = useState([]);
   const [reviews, setReviews] = useState([]);
 
@@ -40,11 +40,6 @@ export default function ContentPopup({ marker }) {
       console.error("Error fetching image:", error);
     }
   }, [marker]);
-
-  const hasToiletReview = reviews.length > 0 && reviews[0].bathrooms;
- const hasChildFriendlyReview = reviews.length > 0 && reviews[0].playground;
- const hasDogFriendlyReview = reviews.length > 0 && reviews[0].dog_friendly;
-
   
   // pass the addreview to submituserReviewer
   const addReview = (newReview) => {
@@ -61,11 +56,11 @@ export default function ContentPopup({ marker }) {
         />
         <Rating rating={marker.google_rating} />
         <div className="flex space-x-2 my-1">
-          {hasToiletReview && <FontAwesomeIcon icon="fa-solid fa-toilet" />}
-          {hasChildFriendlyReview && (
+          {marker.restroom && <FontAwesomeIcon icon="fa-solid fa-toilet" />}
+          {marker.playground && (
             <FontAwesomeIcon icon="fa-solid fa-child-reaching" />
           )}
-          {hasDogFriendlyReview && <FontAwesomeIcon icon="fa-solid fa-dog" />}
+          {marker.dog_friendly && <FontAwesomeIcon icon="fa-solid fa-dog" />}
         </div>
         <button
           className="btn btn-outline btn-xs btn-accent"
