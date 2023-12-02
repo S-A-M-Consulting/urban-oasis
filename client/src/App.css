@@ -7,3 +7,7 @@
   background: black;
   color: white; 
 }
+
+.checkbox {
+  margin-left: 70px; /* Adjust the value as needed */
+}

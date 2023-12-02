@@ -16,6 +16,20 @@ import ContentPopup from "./ContentPopup";
 import MapContext from "./MapContext";
 import ToggleView from "./toggleView";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChildReaching,
+  faToilet,
+  faDog,
+} from "@fortawesome/free-solid-svg-icons";
+// Add the specific icons you want to use to the library
+
+library.add(faToilet)
+library.add(faChildReaching);
+library.add(faDog);
+
+
 const { BaseLayer } = LayersControl;
 
 const val = "Dummy value";
@@ -47,59 +61,59 @@ export default function Map(props) {
   const [showToilets, setShowToilets] = useState(true);
   const [showPlaygrounds, setShowPlaygrounds] = useState(true);
   const [showDogFriendly, setShowDogFriendly] = useState(true);
-  const [checked, setChecked] = useState(true)
+  const [checkToilet, setCheckToilet] = useState(true);
+  const [checkPlayground, setCheckPlayground] = useState(true);
+  const [checkDog, setCheckDog] = useState(true);
 
   const handleToiletsChange = (event) => {
-    event.preventDefault();
-
     // clicking! restroom will gone
     if (showToilets) {
       setShowToilets(false);
       console.log("no washroom: ", showToilets);
       const noToilets = [...parkMarkers].filter((marker) => !marker.restrooms);
       setFilteredMarkers(noToilets);
-      setChecked(false)
+      setCheckToilet(false);
     } else {
       // bring the restroom back
       setShowToilets(true);
       const noToilets = [...parkMarkers];
       setFilteredMarkers(noToilets);
-      setChecked(true);
+      setCheckToilet(true);
       console.log("park has washroom: ", showToilets);
     }
   };
 
   const handlePlaygroundsChange = (event) => {
-    event.preventDefault();
     if (showPlaygrounds) {
       setShowPlaygrounds(false);
       const noPlaygrounds = [...parkMarkers].filter(
         (marker) => !marker.playground
       );
       setFilteredMarkers(noPlaygrounds);
+      setCheckPlayground(false);
     } else {
       // bring the restroom back
       setShowPlaygrounds(true);
       const noPlaygrounds = [...parkMarkers];
       setFilteredMarkers(noPlaygrounds);
+      setCheckPlayground(true);
     }
   };
 
   const handleDogFriendlyChange = (event) => {
-    event.preventDefault();
-
-
     if (showDogFriendly) {
       setShowDogFriendly(false);
       const noDogfriendly = [...parkMarkers].filter(
         (marker) => !marker.dog_friendly
       );
       setFilteredMarkers(noDogfriendly);
+      setCheckDog(false);
     } else {
       // bring the restroom back
       setShowDogFriendly(true);
       const noDogfriendly = [...parkMarkers];
       setFilteredMarkers(noDogfriendly);
+      setCheckDog(true);
     }
   };
 
@@ -194,48 +208,79 @@ export default function Map(props) {
   return (
     <>
       <div id="leaflet-container">
-      <div className="flex flex-col">
-          <div className="form-control w-52">
-            <label className="cursor-pointer label">
-              <span className="label-text">Toilets</span>
-              <input
-                type="checkbox"
-                className="toggle toggle-primary"
-                checked={checked}
-                onChange={handleToiletsChange}
-              />
-            </label>
+        <div
+          className="dropdown dropdown-top dropdown-end btn-accent"
+          style={{ position: "absolute", bottom: 65, right: 10, zIndex: 1000 }}
+        >
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn m-1"
+            style={{ fontSize: "14px", padding: "8px 12px", color: "black" }}
+          >
+            Filter the Park
           </div>
+          <ul
+            tabIndex={0}
+            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <div className="form-control">
+                <label className="cursor-pointer label">
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-toilet"
+                    style={{ color: "white" }}
+                  />
+                  <input
+                    type="checkbox"
+                    checked={checkToilet}
+                    onChange={handleToiletsChange}
+                    className="checkbox checkbox-accent"
+                  />
+                </label>
+              </div>
+            </li>
+            <li>
+              <div className="form-control">
+                <label className="cursor-pointer label">
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-child-reaching"
+                    style={{ color: "white" }}
+                  />
+                  <input
+                    type="checkbox"
+                    checked={checkPlayground}
+                    onChange={handlePlaygroundsChange}
+                    className="checkbox checkbox-accent"
+                  />
+                </label>
+              </div>
+            </li>
+            <li>
+              <div className="form-control">
+                <label className="cursor-pointer label">
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-dog"
+                    style={{ color: "white" }}
+                  />
+                  <input
+                    type="checkbox"
+                    checked={checkDog}
+                    onChange={handleDogFriendlyChange}
+                    className="checkbox checkbox-accent"
+                  />
+                </label>
+              </div>
+            </li>
+          </ul>
         </div>
+
         <button
           className="btn btn-primary btn-xs btn-accent mb-4"
           onClick={updateMapToUserLocation}
           style={{ position: "absolute", bottom: 20, right: 10, zIndex: 1000 }}
         >
           Go to My Location
-        </button>
-        <button
-          className="toggle"
-          type="checkbox"
-          onClick={handlePlaygroundsChange}
-          style={{ position: "absolute", bottom: 50, right: 10, zIndex: 1000 }}
-          checked
-        >
-          No kids
-        </button>
-        <button
-          className="btn btn-primary btn-xs btn-accent mb-4"
-          onClick={handleToiletsChange}
-          style={{ position: "absolute", bottom: 70, right: 10, zIndex: 1000 }}
-        >
-          No Toilets
-        </button>
-        <button
-          className="btn btn-primary btn-xs btn-accent mb-4"
-          onClick={handleDogFriendlyChange}
-          style={{ position: "absolute", bottom: 90, right: 10, zIndex: 1000 }}
-        >
-          No Dogs
         </button>
 
         <MapContainer center={props.mapCenter} zoom={13}>
