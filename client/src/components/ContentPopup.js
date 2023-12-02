@@ -45,15 +45,26 @@ export default function ContentPopup({ marker }) {
  const hasChildFriendlyReview = reviews.length > 0 && reviews[0].playground;
  const hasDogFriendlyReview = reviews.length > 0 && reviews[0].dog_friendly;
 
+  
+  // pass the addreview to submituserReviewer
+  const addReview = (newReview) => {
+    setReviews([...reviews, newReview]); // Update the reviews state with the new review
+  };
   return (
     <>
       <div className="flex flex-col items-center">
         <h2 className="text-center text-accent font-bold">{marker.name}</h2>
-        <img src={`data:image/jpeg;base64,${imageData[0]}`} alt="Park" className="max-h-32 rounded-lg"/>
-        <Rating rating={marker.google_rating}/>
+        <img
+          src={`data:image/jpeg;base64,${imageData[0]}`}
+          alt="Park"
+          className="max-h-32 rounded-lg"
+        />
+        <Rating rating={marker.google_rating} />
         <div className="flex space-x-2 my-1">
           {hasToiletReview && <FontAwesomeIcon icon="fa-solid fa-toilet" />}
-          {hasChildFriendlyReview && <FontAwesomeIcon icon="fa-solid fa-child-reaching" />}
+          {hasChildFriendlyReview && (
+            <FontAwesomeIcon icon="fa-solid fa-child-reaching" />
+          )}
           {hasDogFriendlyReview && <FontAwesomeIcon icon="fa-solid fa-dog" />}
         </div>
         <button
@@ -64,14 +75,13 @@ export default function ContentPopup({ marker }) {
         </button>
       </div>
 
-
       {/** Modal Refactor later */}
       <dialog id="modal" className="modal text-accent">
         <div className="modal-box">
           <div className="modal-action">
-              <form method="dialog">
-                <button className="btn">Close</button>
-              </form>
+            <form method="dialog">
+              <button className="btn">Close</button>
+            </form>
           </div>
           <h1 className="font-bold text-xl">{marker.name}</h1>
           <p className="py-4">{marker.street_address}</p>
@@ -79,18 +89,21 @@ export default function ContentPopup({ marker }) {
             {imageData.map((image, index) => {
               return (
                 <div key={index} className="carousel-item">
-                  <img src={`data:image/jpeg;base64,${image}`} alt="Park"  
-                  style={{
+                  <img
+                    src={`data:image/jpeg;base64,${image}`}
+                    alt="Park"
+                    style={{
                       width: "100%",
                       height: "300px",
                       objectFit: "cover",
                       borderRadius: "8px",
-                    }} />
+                    }}
+                  />
                 </div>
               );
             })}
           </div>
-          <SubmitUserReview park={marker} />
+          <SubmitUserReview park={marker} addReview={addReview} />
           <h2>Reviews</h2>
           <div className="flex flex-col items-center">
             {reviews.map((review) => {
@@ -99,9 +112,7 @@ export default function ContentPopup({ marker }) {
               );
             })}
           </div>
-            
-          </div>
-        
+        </div>
       </dialog>
     </>
   );

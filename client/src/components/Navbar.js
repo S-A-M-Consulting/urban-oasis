@@ -37,6 +37,7 @@ export default function Navbar(props) {
       console.log("park data:", response.data);
       if (response.data && Object.keys(response.data).length !== 0) {
         setSelectedPark([response.data.latitude, response.data.longitude]);
+        setParkSearch("");
         setSearchError(""); // Clear any previous error messages on successful search
       } else {
         // If no data is received, assume park not found

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function SubmitUserReview({park, user}) {
-  const [reviewContent, setReviewContent] = useState('');
+export default function SubmitUserReview({ park, user, addReview }) {
+  const [reviewContent, setReviewContent] = useState("");
   const [rating, setRating] = useState(1);
 
   const handleReviewContentChange = (event) => {
@@ -15,9 +15,9 @@ export default function SubmitUserReview({park, user}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     // Perform actions with the reviewContent and rating, e.g., submit to the server
-    const review = { 
+    const review = {
       user_id: 1,
       park_id: park.id,
       user_experience: reviewContent,
@@ -29,19 +29,23 @@ export default function SubmitUserReview({park, user}) {
       playground_equipment: "This is a playground",
       dog_friendly_description: "This is a dog friendly park",
       bathrooms_description: "This is a bathroom",
-      openarea_description: "This is an open area"
+      openarea_description: "This is an open area",
     };
 
     console.log("review: ", review);
-    
-    axios.post('/api/review', review).then(({ data }) => {
-      console.log(data);
-    }).catch((error) => {
-      console.error(error);
-    })
- 
+
+    axios
+      .post("/api/review", review)
+      .then(({ data }) => {
+        console.log(data);
+        addReview(data); // Add the new review to the list in ContentPopup
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     // Reset the form after submission
-    setReviewContent('');
+    setReviewContent("");
     setRating(0);
   };
 
@@ -61,7 +65,11 @@ export default function SubmitUserReview({park, user}) {
               onChange={handleReviewContentChange}
             ></textarea>
           </div>
-          <button type="submit" className="btn btn-accent mt-2" onClick={handleSubmit}>
+          <button
+            type="submit"
+            className="btn btn-accent mt-2"
+            onClick={handleSubmit}
+          >
             Submit
           </button>
           <div className="form-group rating flex-row justify-center">
@@ -77,7 +85,6 @@ export default function SubmitUserReview({park, user}) {
               />
             ))}
           </div>
-          
         </form>
       </div>
     </div>
