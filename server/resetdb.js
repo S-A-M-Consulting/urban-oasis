@@ -27,6 +27,7 @@ const seedParkData = async (data) => {
     const {name, geometry, vicinity, place_id, rating} = park;
     const {lat, lng} = geometry.location;
     //const photo = photos[0].photo_reference || " ";
+    const flip = () => Math.random() < 0.5;
 
     const parkData = {
       name,
@@ -34,7 +35,10 @@ const seedParkData = async (data) => {
       longitude: lng,
       street_address: vicinity,
       google_rating: rating,
-      place_id: place_id
+      place_id: place_id,
+      dog_friendly: flip(),
+      restrooms: flip(),
+      playground: flip()
     };
 
     await axios.post('http://localhost:8080/api/park', parkData);
