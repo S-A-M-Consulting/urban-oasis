@@ -30,8 +30,8 @@ CREATE TABLE reviews (
     playground_equipment TEXT,
     bathrooms BOOLEAN NOT NULL,
     bathrooms_description TEXT,
-    openArea BOOLEAN NOT NULL,
-    openArea_description TEXT,
+    openarea BOOLEAN NOT NULL,
+    openarea_description TEXT,
     dog_friendly BOOLEAN NOT NULL,
     dog_friendly_description TEXT
 );

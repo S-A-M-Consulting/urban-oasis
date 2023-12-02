@@ -20,7 +20,8 @@ INSERT INTO users (name, photo, email, password) VALUES
 ('Gob Bluth', '/images/users/17.png', 'gob.bluth@example.com', 'password'),
 ('Buster Bluth', '/images/users/18.png', 'buster.bluth@example.com', 'password'),
 ('Tom Haverford', '/images/users/19.png', 'tom.haverford@example.com', 'password'),
-('Donna Meagle', '/images/users/20.png', 'donna.meagle@example.com', 'password');
+('Donna Meagle', '/images/users/20.png', 'donna.meagle@example.com', 'password'),
+('Demo', '', '', '');
 
 insert into reviews (id, park_id, user_id, rating, user_experience, playground, playground_equipment, bathrooms, bathrooms_description, openarea, openarea_description, dog_friendly, dog_friendly_description) values (1, 94, 12, 1, 'scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas', true, 'Re-engineered', true, 'uniform', true, 'cohesive', true, 'help-desk');
 insert into reviews (id, park_id, user_id, rating, user_experience, playground, playground_equipment, bathrooms, bathrooms_description, openarea, openarea_description, dog_friendly, dog_friendly_description) values (2, 113, 15, 5, 'eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id', false, 'object-oriented', true, 'solution', false, 'Focused', false, 'monitoring');
