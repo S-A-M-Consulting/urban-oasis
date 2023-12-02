@@ -34,7 +34,7 @@ export default function ContentPopup({ marker, userLocation }) {
         .get(`/api/photo/${marker.place_id}`)
         .then(({ data }) => setImageData(data));
       axios.get(`/api/review/park/${marker.id}`).then(({ data }) => {
-        setReviews(data);
+        setReviews(data.reverse());
         //console.log("reviews: ", data); // Log reviews here
       });
     } catch (error) {
@@ -44,7 +44,7 @@ export default function ContentPopup({ marker, userLocation }) {
   
   // pass the addreview to submituserReviewer
   const addReview = (newReview) => {
-    setReviews([...reviews, newReview]); // Update the reviews state with the new review
+    setReviews([newReview, ...reviews]); // Update the reviews state with the new review
   };
   // delete the review and pass to submituserReviewer
   const deleteReview = (updatedReviews) => {
@@ -106,7 +106,7 @@ export default function ContentPopup({ marker, userLocation }) {
           </div>
           <SubmitUserReview park={marker} addReview={addReview} />
           <h2>Reviews</h2>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col text-left">
             {reviews.map((review) => {
               return (
                 <ReviewCard key={review.id} review={review} marker={marker} deleteReview={deleteReview}

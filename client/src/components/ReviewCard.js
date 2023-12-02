@@ -42,7 +42,7 @@ export default function ReviewCard({ reviews, review, marker,deleteReview }) {
           </div>
           <div className="chat-bubble  break-words">
             <article className="break-words">
-              {user.name} says {review.review}
+              <b>{user.name} says:</b> {review.review}
             </article>
           </div>
         </div>
