@@ -47,6 +47,7 @@ export default function Map(props) {
   const [showToilets, setShowToilets] = useState(true);
   const [showPlaygrounds, setShowPlaygrounds] = useState(true);
   const [showDogFriendly, setShowDogFriendly] = useState(true);
+  const [checked, setChecked] = useState(true)
 
   const handleToiletsChange = (event) => {
     event.preventDefault();
@@ -57,11 +58,13 @@ export default function Map(props) {
       console.log("no washroom: ", showToilets);
       const noToilets = [...parkMarkers].filter((marker) => !marker.restrooms);
       setFilteredMarkers(noToilets);
+      setChecked(false)
     } else {
       // bring the restroom back
       setShowToilets(true);
       const noToilets = [...parkMarkers];
       setFilteredMarkers(noToilets);
+      setChecked(true);
       console.log("park has washroom: ", showToilets);
     }
   };
@@ -191,6 +194,19 @@ export default function Map(props) {
   return (
     <>
       <div id="leaflet-container">
+      <div className="flex flex-col">
+          <div className="form-control w-52">
+            <label className="cursor-pointer label">
+              <span className="label-text">Toilets</span>
+              <input
+                type="checkbox"
+                className="toggle toggle-primary"
+                checked={checked}
+                onChange={handleToiletsChange}
+              />
+            </label>
+          </div>
+        </div>
         <button
           className="btn btn-primary btn-xs btn-accent mb-4"
           onClick={updateMapToUserLocation}
