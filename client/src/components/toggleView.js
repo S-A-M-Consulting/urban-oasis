@@ -21,20 +21,35 @@ export default function ToggleView({
     <div className="flex flex-col">
       <div className="form-control w-52">
         <label className="cursor-pointer label">
-          <FontAwesomeIcon icon="fa-solid fa-children" />
-          <input type="checkbox" className="toggle toggle-primary" checked onClick={handlePlaygroundsChange}/>
-        </label>
-      </div>
-      <div className="form-control w-52">
-        <label className="cursor-pointer label">
-          <FontAwesomeIcon icon="fa-solid fa-dog" />
-          <input type="checkbox" className="toggle toggle-secondary" checked onClick={dleDogFriendlyChange}/>
+          <FontAwesomeIcon icon="fa-solid fa-toilet" />
+          <input
+            type="checkbox"
+            className="toggle toggle-primary"
+            checked
+            onClick={handleToiletsChange}
+          />
         </label>
       </div>
       <div className="form-control w-52">
         <label className="cursor-pointer label">
           <FontAwesomeIcon icon="fa-solid fa-child-reaching" />
-          <input type="checkbox" className="toggle toggle-accent" checked onClick={}/>
+          <input
+            type="checkbox"
+            className="toggle toggle-secondary"
+            checked
+            onClick={handlePlaygroundsChange}
+          />
+        </label>
+      </div>
+      <div className="form-control w-52">
+        <label className="cursor-pointer label">
+          <FontAwesomeIcon icon="fa-solid fa-dog" />
+          <input
+            type="checkbox"
+            className="toggle toggle-accent"
+            checked
+            onClick={handleDogFriendlyChange}
+          />
         </label>
       </div>
     </div>

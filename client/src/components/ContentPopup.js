@@ -63,7 +63,7 @@ export default function ContentPopup({ marker, userLocation }) {
         <Rating rating={marker.google_rating} />
         <div className="flex space-x-2 my-1">
           {userLocation && parkLocation && <i>{calculateDistance(userLocation[0],userLocation[1], parkLocation[0],parkLocation[1]) } km</i>}
-          {marker.restroom && <FontAwesomeIcon icon="fa-solid fa-toilet" />}
+          {marker.restrooms && <FontAwesomeIcon icon="fa-solid fa-toilet" />}
           {marker.playground && (
             <FontAwesomeIcon icon="fa-solid fa-child-reaching" />
           )}

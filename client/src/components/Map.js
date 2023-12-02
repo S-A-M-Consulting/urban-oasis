@@ -43,30 +43,61 @@ export default function Map(props) {
 
   const [userLocation, setUserLocation] = useState(defaultLocation);
   const [parkMarkers, setParkMarkers] = useState([]);
+  const [filteredMarkers, setFilteredMarkers] = useState([]);
   const [showToilets, setShowToilets] = useState(true);
   const [showPlaygrounds, setShowPlaygrounds] = useState(true);
   const [showDogFriendly, setShowDogFriendly] = useState(true);
 
   const handleToiletsChange = (event) => {
-    setShowToilets((prevState) => !prevState);
-    const noToilets = [...parkMarkers].filter((marker) => marker.restrooms);
-    setParkMarkers(noToilets);
+    event.preventDefault();
+
+    // clicking! restroom will gone
+    if (showToilets) {
+      setShowToilets(false);
+      console.log("no washroom: ", showToilets);
+      const noToilets = [...parkMarkers].filter((marker) => !marker.restrooms);
+      setFilteredMarkers(noToilets);
+    } else {
+      // bring the restroom back
+      setShowToilets(true);
+      const noToilets = [...parkMarkers];
+      setFilteredMarkers(noToilets);
+      console.log("park has washroom: ", showToilets);
+    }
   };
 
   const handlePlaygroundsChange = (event) => {
-    setShowPlaygrounds((prevState) => !prevState);
-    const noPlaygrounds = [...parkMarkers].filter(
-      (marker) => marker.playground
-    );
-    setParkMarkers(noPlaygrounds);
+    event.preventDefault();
+    if (showPlaygrounds) {
+      setShowPlaygrounds(false);
+      const noPlaygrounds = [...parkMarkers].filter(
+        (marker) => !marker.playground
+      );
+      setFilteredMarkers(noPlaygrounds);
+    } else {
+      // bring the restroom back
+      setShowPlaygrounds(true);
+      const noPlaygrounds = [...parkMarkers];
+      setFilteredMarkers(noPlaygrounds);
+    }
   };
 
   const handleDogFriendlyChange = (event) => {
-    setShowDogFriendly((prevState) => !prevState);
-    const noDogfriendly = [...parkMarkers].filter(
-      (marker) => marker.dog_friendly
-    );
-    setParkMarkers(noDogfriendly);
+    event.preventDefault();
+
+
+    if (showDogFriendly) {
+      setShowDogFriendly(false);
+      const noDogfriendly = [...parkMarkers].filter(
+        (marker) => !marker.dog_friendly
+      );
+      setFilteredMarkers(noDogfriendly);
+    } else {
+      // bring the restroom back
+      setShowDogFriendly(true);
+      const noDogfriendly = [...parkMarkers];
+      setFilteredMarkers(noDogfriendly);
+    }
   };
 
   // bring all the park data to the frontend
@@ -74,9 +105,10 @@ export default function Map(props) {
     axios
       .get("/api/park")
       .then((response) => {
-        const covertedParks = convertCoordinatesToList(response.data);
-        setParkMarkers(covertedParks);
-        console.log(covertedParks);
+        const convertedParks = convertCoordinatesToList(response.data);
+        setParkMarkers(convertedParks);
+        setFilteredMarkers(convertedParks);
+        console.log(convertedParks);
       })
       .catch((error) => {
         console.error("Error fetching park data:", error);
@@ -167,9 +199,11 @@ export default function Map(props) {
           Go to My Location
         </button>
         <button
-          className="btn btn-primary btn-xs btn-accent mb-4"
+          className="toggle"
+          type="checkbox"
           onClick={handlePlaygroundsChange}
           style={{ position: "absolute", bottom: 50, right: 10, zIndex: 1000 }}
+          checked
         >
           No kids
         </button>
@@ -218,7 +252,7 @@ export default function Map(props) {
             </BaseLayer>
 
             <MarkerClusterGroup chunkedLoading>
-              {parkMarkers.map((marker) => (
+              {filteredMarkers.map((marker) => (
                 <Marker
                   position={marker.geocode}
                   icon={customIcon}
