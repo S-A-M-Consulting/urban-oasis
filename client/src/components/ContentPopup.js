@@ -11,6 +11,7 @@ import {
 import Rating from "./Rating";
 import ReviewCard from "./ReviewCard";
 import SubmitUserReview from "./SubmitUserReview";
+import { calculateDistance } from "../helpers/calculateDis";
 
 // Add the specific icons you want to use to the library
 
@@ -22,10 +23,11 @@ library.add(faDog);
 
 
 
-export default function ContentPopup({ marker }) {
+export default function ContentPopup({ marker, userLocation }) {
   
   const [imageData, setImageData] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const parkLocation = [marker.latitude, marker.longitude];
 
   useEffect(() => {
     try {
@@ -56,6 +58,7 @@ export default function ContentPopup({ marker }) {
         />
         <Rating rating={marker.google_rating} />
         <div className="flex space-x-2 my-1">
+          {userLocation && parkLocation && <i>{calculateDistance(userLocation[0],userLocation[1], parkLocation[0],parkLocation[1]) } km</i>}
           {marker.restroom && <FontAwesomeIcon icon="fa-solid fa-toilet" />}
           {marker.playground && (
             <FontAwesomeIcon icon="fa-solid fa-child-reaching" />
