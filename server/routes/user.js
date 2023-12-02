@@ -24,6 +24,17 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get('/email/:email', (req, res) => {
+  const { email } = req.params;
+  queries.getUserByEmail(email)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
+
 router.post('/', (req, res) => {
   const user = req.body;
   queries.addUser(user)

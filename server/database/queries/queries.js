@@ -65,6 +65,12 @@ const getOneUser = (id) => {
   .catch(error('getOneUser'));
 }
 
+const getUserByEmail = (email) => {
+  return db.query("SELECT * FROM users WHERE email = $1", [email])
+  .then(getOne)
+  .catch(error('getUserByEmail'));
+};
+
 const addUser = (user) => {
   return insert(db, 'users', user)
   .then(getOne)
@@ -123,6 +129,7 @@ const queries = {
   deletePark,
   getAllUsers,
   getOneUser,
+  getUserByEmail,
   addUser,
   updateUser,
   deleteUser,

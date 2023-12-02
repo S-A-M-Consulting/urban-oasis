@@ -7,7 +7,6 @@ import { useContext } from "react";
 
 
 import 'tailwindcss/tailwind.css';
-//import '@headlessui/react/styles.css';
 import 'daisyui/dist/full.css';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
@@ -76,8 +75,23 @@ export default function Navbar(props) {
       // This can be achieved by setting a state variable to the selected park's ID and passing it to the marker component as a prop
     }
   }, [selectedPark]);
+
   const { user, isAuthenticated, isLoading } = useAuth0();
+  //console.log("user", user);
   const profilePic = isAuthenticated ? user.picture : process.env.PUBLIC_URL + 'user.png';
+
+  // useEffect(() => {
+  //   if (user) {
+  //     try {
+  //       const data = axios.get(`/api/user/email/${user.email}`)
+  //         .then(res => console.log('response', res.data));
+        
+  //     } catch (error) {
+  //       // axios.post(`/api/user`, { name: user.given_name + user.last_name, email: user.email, photo: user.picture, password: user.sub });
+  //       console.log("error", error);
+  //     }
+  //   }
+  // }, [user]);
 
   return (
     <nav className="navbar bg-base-100">

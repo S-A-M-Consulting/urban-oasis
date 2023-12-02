@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default function SubmitUserReview({ park, user, addReview }) {
   const [reviewContent, setReviewContent] = useState("");
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(5);
 
   const handleReviewContentChange = (event) => {
     setReviewContent(event.target.value);
@@ -18,7 +18,7 @@ export default function SubmitUserReview({ park, user, addReview }) {
 
     // Perform actions with the reviewContent and rating, e.g., submit to the server
     const review = {
-      user_id: 1,
+      user_id: sessionStorage.getItem('user_id'),
       park_id: park.id,
       review: reviewContent,
       rating: rating
