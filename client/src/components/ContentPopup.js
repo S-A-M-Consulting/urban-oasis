@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Rating from "./Rating";
 import ReviewCard from "./ReviewCard";
+import SubmitUserReview from "./SubmitUserReview";
 
 // Add the specific icons you want to use to the library
 
@@ -90,12 +91,14 @@ export default function ContentPopup({ marker }) {
             })}
           </div>
           <h2>Reviews</h2>
-          <div className="carousel rounded-box carousel-end max-h-64">
+          <div className="carousel rounded-box carousel-end max-h-64 over">
             {reviews.map((review) => {
               return (<ReviewCard key={review.id} review={review} marker={marker} />);
             })}
           </div>
-        </div>
+            < SubmitUserReview marker={marker} />
+          </div>
+        
       </dialog>
     </>
   );
