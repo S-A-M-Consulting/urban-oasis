@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Icons from "./Icons";
 
 export default function ReviewCard({ reviews, review, marker,deleteReview }) {
   const [user, setUser] = useState([]);
@@ -48,7 +47,6 @@ export default function ReviewCard({ reviews, review, marker,deleteReview }) {
           </div>
         </div>
         <h2 className="card-title">{review.rating}/5 ⭐️'s</h2>
-        <button onClick={handleDelete}>Delete Review</button>
         <p>{user.experience}</p>
       </div>
     </div>
