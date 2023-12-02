@@ -47,6 +47,10 @@ export default function ContentPopup({ marker, userLocation }) {
   const addReview = (newReview) => {
     setReviews([...reviews, newReview]); // Update the reviews state with the new review
   };
+  // delete the review and pass to submituserReviewer
+  const deleteReview = (updatedReviews) => {
+    setReviews(updatedReviews);
+  };
   return (
     <>
       <div className="flex flex-col items-center">
@@ -106,7 +110,8 @@ export default function ContentPopup({ marker, userLocation }) {
           <div className="flex flex-col items-center">
             {reviews.map((review) => {
               return (
-                <ReviewCard key={review.id} review={review} marker={marker} />
+                <ReviewCard key={review.id} review={review} marker={marker} deleteReview={deleteReview}
+            reviews={reviews} />
               );
             })}
           </div>

@@ -71,7 +71,6 @@ export default function Map(props) {
           position.coords.latitude,
           position.coords.longitude,
         ];
-        console.log("User Coords:", userCoords);
         props.updateMapCenter(userCoords);
         setUserLocation(userCoords);
       },
