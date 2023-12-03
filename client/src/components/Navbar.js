@@ -4,12 +4,10 @@ import axios from "axios";
 import MapContext from "./MapContext";
 import { useContext } from "react";
 
-
-
-import 'tailwindcss/tailwind.css';
-import 'daisyui/dist/full.css';
-import LoginButton from './LoginButton';
-import LogoutButton from './LogoutButton';
+import "tailwindcss/tailwind.css";
+import "daisyui/dist/full.css";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 //import './Navbar.css';
 
@@ -24,7 +22,7 @@ export default function Navbar(props) {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleParkSearch();
     }
   };
@@ -41,7 +39,7 @@ export default function Navbar(props) {
       } else {
         // If no data is received, assume park not found
         setSearchError("Park not found. Please try again.");
-        setParkSearch("")
+        setParkSearch("");
         setSelectedPark([]); // Reset selectedPark if search fails
 
         // Clear the error message after 2 seconds
@@ -61,16 +59,13 @@ export default function Navbar(props) {
     }
   };
 
-  
-
   useEffect(() => {
     if (selectedPark) {
-
       // console.log("hit here in the useEffect");
       // console.log("selectedPark", selectedPark);
       props.updateMapCenter(selectedPark);
       handleMarkerClick(selectedPark);
-  
+
       // Also, trigger a click event on the selected park's marker
       // This can be achieved by setting a state variable to the selected park's ID and passing it to the marker component as a prop
     }
@@ -78,14 +73,16 @@ export default function Navbar(props) {
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   //console.log("user", user);
-  const profilePic = isAuthenticated ? user.picture : process.env.PUBLIC_URL + 'user.png';
+  const profilePic = isAuthenticated
+    ? user.picture
+    : process.env.PUBLIC_URL + "user.png";
 
   // useEffect(() => {
   //   if (user) {
   //     try {
   //       const data = axios.get(`/api/user/email/${user.email}`)
   //         .then(res => console.log('response', res.data));
-        
+
   //     } catch (error) {
   //       // axios.post(`/api/user`, { name: user.given_name + user.last_name, email: user.email, photo: user.picture, password: user.sub });
   //       console.log("error", error);
@@ -103,7 +100,7 @@ export default function Navbar(props) {
         />
       </div>
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Urban Oasis</a>
+        <a className="btn btn-lg btn-ghost text-xl">Urban Oasis</a>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">
@@ -116,7 +113,7 @@ export default function Navbar(props) {
             className="input input-bordered w-24 md:w-auto"
           />
         </div>
-        {isAuthenticated ? <LogoutButton/> : <LoginButton />}
+        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
         {searchError && (
           <div className="absolute top-12 right-4 bg-red-200 border border-red-500 text-red-700 px-4 py-2 rounded shadow-md">
             {searchError}
@@ -151,6 +148,4 @@ export default function Navbar(props) {
       </div>
     </nav>
   );
-};
-
-
+}

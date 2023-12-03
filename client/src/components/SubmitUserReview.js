@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 export default function SubmitUserReview({ park, addReview }) {
   const [reviewContent, setReviewContent] = useState("");
@@ -18,10 +18,10 @@ export default function SubmitUserReview({ park, addReview }) {
 
     // Perform actions with the reviewContent and rating, e.g., submit to the server
     const review = {
-      user_id: sessionStorage.getItem('user_id'),
+      user_id: sessionStorage.getItem("user_id"),
       park_id: park.id,
       review: reviewContent,
-      rating: rating
+      rating: rating,
     };
 
     axios
@@ -50,30 +50,32 @@ export default function SubmitUserReview({ park, addReview }) {
             <textarea
               className="form-control textarea textarea-bordered w-full"
               id="review-content"
-              rows="3"
+              rows="2"
               value={reviewContent}
               onChange={handleReviewContentChange}
             ></textarea>
           </div>
-          <button
-            type="submit"
-            className="btn btn-accent mt-2"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
-          <div className="form-group rating flex-row justify-center">
-            {[1, 2, 3, 4, 5].map((value) => (
-              <input
-                key={value}
-                type="radio"
-                name="rating-1"
-                className="mask mask-star"
-                value={value}
-                checked={rating === value}
-                onChange={handleRatingChange}
-              />
-            ))}
+          <div className="flex justify items-center">
+            <button
+              type="submit"
+              className="btn btn-accent mt-2 mr-4"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+            <div className="form-group rating flex-row justify-center">
+              {[1, 2, 3, 4, 5].map((value) => (
+                <input
+                  key={value}
+                  type="radio"
+                  name="rating-1"
+                  className="mask mask-star"
+                  value={value}
+                  checked={rating === value}
+                  onChange={handleRatingChange}
+                />
+              ))}
+            </div>
           </div>
         </form>
       </div>
