@@ -22,7 +22,7 @@ INSERT INTO users (name, photo, email, password) VALUES
 ('Tom Haverford', '/images/users/19.png', 'tom.haverford@example.com', 'password'),
 ('Donna Meagle', '/images/users/20.png', 'donna.meagle@example.com', 'password');
 
-insert into reviews (park_id, user_id, rating, review) values (1, 3, 1, 'Diverse');
+insert into reviews (park_id, user_id, rating, review) values (1, 3, 1, 'Diverse and other stuff like it, enjoy this park');
 insert into reviews (park_id, user_id, rating, review) values (74, 12, 5, 'installation');
 insert into reviews (park_id, user_id, rating, review) values (87, 5, 2, 'Enhanced');
 insert into reviews (park_id, user_id, rating, review) values (4, 14, 5, 'Graphic Interface');

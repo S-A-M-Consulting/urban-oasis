@@ -16,7 +16,7 @@ CREATE TABLE parks (
     latitude DECIMAL(9,6) NOT NULL,
     longitude DECIMAL(9,6) NOT NULL,
     street_address TEXT NOT NULL,
-    place_id TEXT,
+    place_id TEXT NOT NULL UNIQUE,
     google_rating DECIMAL(2,1),
     dog_friendly BOOLEAN DEFAULT TRUE,
     playground BOOLEAN DEFAULT TRUE,

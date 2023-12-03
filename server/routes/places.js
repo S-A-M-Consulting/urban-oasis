@@ -12,9 +12,10 @@ function delay(ms) {
 const getParksInArea = async (lat, lng, radius) => {
   const apiKey = process.env.MAPS_API_KEY;
   const endPoint = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=park&key=${apiKey}`;
+  console.log(endPoint);
   const data = await axios.get(endPoint).then((response) => response.data);
   const results = data.results;
-
+  console.log(results.length);
   // const nextPageToken = data.next_page_token;
   // if (nextPageToken) {
   //   const allResults = await fetchNextPage(endPoint, nextPageToken, results);
@@ -40,7 +41,7 @@ const addParksToDatabase = async (parks) => {
       restrooms: flip(),
       playground: flip()
     };
-
+    console.log("added park", parkData.place_id);
     await queries.addPark(parkData);
   } 
 }
@@ -50,7 +51,9 @@ const addParksToDatabase = async (parks) => {
 router.post('/', async (req, res) => {
   try {
     const { lat, lng, radius } = req.body;
+    console.log({lat, lng, radius});
     const parks = await getParksInArea(lat, lng, radius);
+    console.log(parks.length);
     await addParksToDatabase(parks);
     res.json(parks);
   } catch (error) {
