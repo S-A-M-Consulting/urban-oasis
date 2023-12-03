@@ -19,14 +19,20 @@ const _insert = (table, names) => {
   const nameString = names.join(', ');
   const valueString = valuePlaceholders.join(', ');
 
-  return `INSERT INTO ${table} (${nameString}) VALUES (${valueString}) RETURNING *`;
+  return `INSERT INTO ${table} (${nameString}) VALUES (${valueString})`;
 }
 
 const insert = (db, table, data) => {
-  const statement = _insert(table, Object.keys(data));
+  const statement = _insert(table, Object.keys(data)) + ' RETURNING *';
   debug(() => console.log(statement));
   debug(() => console.log(data));
   return db.query(statement, Object.values(data));
+}
+
+const insertUnique = (db, table, data, field) => {
+  const statement = _insert(table, Object.keys(data)) + ` ON CONFLICT (${field}) DO NOTHING RETURNING *`;
+  return db.query(statement, Object.values(data));
+
 }
 
 const update = (db, table, id, newData) => {
@@ -43,7 +49,7 @@ const update = (db, table, id, newData) => {
 
 
 
-module.exports = {error, debug, getAll, getOne, insert, update};
+module.exports = {error, debug, getAll, getOne, insert, insertUnique, update};
 
 debug(() => {
   //console.log(insert(db, 'users', {name: 'jessie' , email: 'j@example.com', password: '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.'}));

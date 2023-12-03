@@ -1,5 +1,5 @@
 const db = require('../connection');
-const { error, debug, getAll, getOne, insert, update } = require('../../utils/util');
+const { error, debug, getAll, getOne, insert, insertUnique, update } = require('../../utils/util');
 
 //parks
 const getAllParks = () => {
@@ -34,7 +34,7 @@ const getParkByName = (searchTerm) => {
 };
 
 const addPark = (park) => {
-  return insert(db, 'parks', park)
+  return insertUnique(db, 'parks', park, 'place_id')
   .then(getOne)
   .catch(error('addPark'));
 };
@@ -120,6 +120,10 @@ const deleteReview = (id) => {
   .then(getOne)
   .catch(error('deleteReview'));
 };
+
+//places
+
+
 
 const queries = {
   getAllParks,

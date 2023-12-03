@@ -6,8 +6,7 @@ const path = require('path');
 
 // Function to make the initial request
 async function makeInitialRequest() {
-  const apiEndpoint =
-    process.env.MAPS_API_ENDPOINT + process.env.MAPS_API_SEARCH_PARAMS;
+  const apiEndpoint = process.env.MAPS_API_ENDPOINT + process.env.MAPS_API_SEARCH_PARAMS;
   console.log("1st apiEndpoint", apiEndpoint);
   const data = await axios.get(apiEndpoint).then((response) => response.data);
   console.log("initial pages got: ", data.results.length);
