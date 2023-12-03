@@ -36,6 +36,20 @@ router.get("/name/:name", (req, res) => {
     });
 });
 
+router.get("/prefix/:prefix", (req, res) => {
+  const { prefix } = req.params;
+  console.log("hit in the prefix route");
+  console.log("prefix: ", prefix);
+  queries
+    .getParkByPrefix(prefix)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
+
 router.post('/', (req, res) => {
   const park = req.body;
   queries.addPark(park)
