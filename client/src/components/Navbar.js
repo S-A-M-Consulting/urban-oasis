@@ -11,11 +11,39 @@ import LogoutButton from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 //import './Navbar.css';
 
+import MyReviewsModal from "./MyReviewsModal";
+
 export default function Navbar(props) {
   const [parkSearch, setParkSearch] = useState("");
   const [selectedPark, setSelectedPark] = useState([]);
   const { setClickTrigger } = useContext(MapContext);
   const [searchError, setSearchError] = useState("");
+
+  //add for review modal
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userReviews, setUserReviews] = useState([]);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+    getUserReviews();
+  };
+
+  useEffect(() => {
+    if (isAuthenticated && !isLoading && user) {
+      // Once the user object is available and authenticated
+      getUserReviews(); // Fetch user reviews
+    }
+  }, [isAuthenticated, isLoading, user]);
+
+  const getUserReviews = async () => {
+    try {
+      const response = await axios.get(`/api/review/user/${user.id}`);
+      setUserReviews(response.data);
+    } catch (error) {
+      console.error("Error fetching user review: ", error);
+    }
+  };
 
   const handleMarkerClick = (coords) => {
     setClickTrigger(coords);
@@ -72,7 +100,7 @@ export default function Navbar(props) {
   }, [selectedPark]);
 
   const { user, isAuthenticated, isLoading } = useAuth0();
-  //console.log("user", user);
+  console.log("user", user);
   const profilePic = isAuthenticated
     ? user.picture
     : process.env.PUBLIC_URL + "user.png";
@@ -100,8 +128,18 @@ export default function Navbar(props) {
         />
       </div>
       <div className="flex-1">
-        <a className="btn btn-lg btn-ghost text-xl">Urban Oasis</a>
+        <a className="btn btn-lg text-xl">Urban Oasis</a>
+        <button className="btn btn-xs btn-ghost" onClick={handleOpenModal}>
+          My Reviews
+        </button>
       </div>
+      {isModalOpen && (
+        <MyReviewsModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          reviews={userReviews}
+        />
+      )}
       <div className="flex-none gap-2">
         <div className="form-control">
           <input
