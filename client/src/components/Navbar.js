@@ -21,6 +21,7 @@ export default function Navbar(props) {
   const { setClickTrigger } = useContext(MapContext);
   const [searchError, setSearchError] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [searchChanged, setSearchChanged] = useState(false);
 
   const handleMarkerClick = (coords) => {
     setClickTrigger(coords);
@@ -128,11 +129,33 @@ export default function Navbar(props) {
     }
   };
 
+  // const handleSuggestionClick = (name) => {
+  //   console.log("hit in the handleSuggestionClick", name);
+  //   setParkSearch(name); // Update the park search state
+  //   console.log("parkSearch in handle state is", parkSearch);
+  //   handleParkSearch(); // Perform a park search
+  //   setSuggestions([]); // Clear the suggestions
+  // };
+
+  // refactor the code:
   const handleSuggestionClick = (name) => {
+    console.log("hit in the handleSuggestionClick", name);
     setParkSearch(name); // Update the park search state
-    setSuggestions([]); // Clear the suggestions
-    handleParkSearch(); // Perform a park search
-  }
+    console.log("parkSearch in handle state is", parkSearch);
+    setSearchChanged(true); // Flag to trigger the actions in useEffect
+  };
+
+  const handleSearchActions = () => {
+    if (searchChanged) {
+      handleParkSearch(); // Perform actions based on the updated parkSearch
+      setSuggestions([]); // Clear the suggestions
+      setSearchChanged(false); // Reset the flag
+    }
+  };
+
+  useEffect(() => {
+    handleSearchActions();
+  }, [parkSearch]); // Only triggers when parkSearch changes
 
   return (
     <nav className="navbar bg-base-100">
