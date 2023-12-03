@@ -11,6 +11,7 @@ import Rating from "./Rating";
 import ReviewCard from "./ReviewCard";
 import SubmitUserReview from "./SubmitUserReview";
 import { calculateDistance } from "../helpers/calculateDis";
+import ImageCarousel from "./ImageCarousel";
 
 // Add the specific icons you want to use to the library
 
@@ -86,7 +87,8 @@ export default function ContentPopup({ marker, userLocation }) {
           </div>
           <h1 className="font-bold text-xl">{marker.name}</h1>
           <p className="py-4">{marker.street_address}</p>
-          <div className="carousel rounded-box carousel-end max-h-64">
+          {imageData && <ImageCarousel imageData={imageData}/>}
+          {/* <div className="carousel rounded-box carousel-end max-h-64">
             {imageData.map((image, index) => {
               return (
                 <div key={index} className="carousel-item">
@@ -103,7 +105,7 @@ export default function ContentPopup({ marker, userLocation }) {
                 </div>
               );
             })}
-          </div>
+          </div> */}
           <SubmitUserReview park={marker} addReview={addReview} />
           <h2>Reviews</h2>
           <div className="flex flex-col text-left">
