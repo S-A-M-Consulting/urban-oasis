@@ -4,9 +4,6 @@ export default function ImageCarousel({ imageData }) {
   const lastIndex = imageData.length - 1;
   const idTemplate = "#carousel-image-";
 
-  console.log("lastIndex: ", lastIndex);
-  console.log("idTemplate: ", idTemplate + lastIndex);
-
   const images = imageData.map((image, index) => {
     return (
       <div id={idTemplate + index} className="carousel-item relative w-full" key={idTemplate + index}>

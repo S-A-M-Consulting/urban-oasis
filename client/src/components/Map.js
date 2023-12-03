@@ -25,14 +25,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 // Add the specific icons you want to use to the library
 
-library.add(faToilet)
+library.add(faToilet);
 library.add(faChildReaching);
 library.add(faDog);
 
-
 const { BaseLayer } = LayersControl;
-
-const val = "Dummy value";
 
 const userIcon = new Icon({
   iconUrl: require("./../img/pin.png"),
@@ -89,7 +86,6 @@ export default function Map(props) {
     }
   };
 
-
   const handleDogFriendlyChange = () => {
     if (showDogFriendly) {
       setShowDogFriendly(false);
@@ -99,7 +95,6 @@ export default function Map(props) {
       setCheckDog(true);
     }
   };
-
 
   // filter helpers:
   useEffect(() => {
@@ -120,7 +115,6 @@ export default function Map(props) {
     setFilteredMarkers(filtered);
     console.log("flitered", filteredMarkers);
   }, [showToilets, showPlaygrounds, showDogFriendly, parkMarkers]);
-
 
   // bring all the park data to the frontend
   useEffect(() => {
@@ -214,16 +208,15 @@ export default function Map(props) {
     <>
       <div id="leaflet-container">
         <div
-          className="dropdown dropdown-top dropdown-end btn-accent"
-          style={{ position: "absolute", bottom: 65, right: 10, zIndex: 1000 }}
+          className="dropdown dropdown-down dropdown-end btn-accent"
+          style={{ position: "absolute", top: 118, right: 65, zIndex: 1000 }}
         >
           <div
             tabIndex={0}
             role="button"
-            className="btn m-1"
-            style={{ fontSize: "14px", padding: "8px 12px", color: "black" }}
+            className="btn btn-xs btn-accent mb-4"
           >
-            Filter the Park
+            Park Categories
           </div>
           <ul
             tabIndex={0}
@@ -270,6 +263,7 @@ export default function Map(props) {
                   />
                   <input
                     type="checkbox"
+                    id="checkboxDog"
                     checked={checkDog}
                     onChange={handleDogFriendlyChange}
                     className="checkbox checkbox-accent"

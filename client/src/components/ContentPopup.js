@@ -88,24 +88,6 @@ export default function ContentPopup({ marker, userLocation }) {
           <h1 className="font-bold text-xl">{marker.name}</h1>
           <p className="py-4">{marker.street_address}</p>
           {imageData && <ImageCarousel imageData={imageData}/>}
-          {/* <div className="carousel rounded-box carousel-end max-h-64">
-            {imageData.map((image, index) => {
-              return (
-                <div key={index} className="carousel-item">
-                  <img
-                    src={`data:image/jpeg;base64,${image}`}
-                    alt="Park"
-                    style={{
-                      width: "100%",
-                      height: "300px",
-                      objectFit: "cover",
-                      borderRadius: "8px",
-                    }}
-                  />
-                </div>
-              );
-            })}
-          </div> */}
           <SubmitUserReview park={marker} addReview={addReview} />
           <h2>Reviews</h2>
           <div className="flex flex-col text-left">
