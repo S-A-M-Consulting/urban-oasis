@@ -65,57 +65,62 @@ export default function Map(props) {
   const [checkPlayground, setCheckPlayground] = useState(true);
   const [checkDog, setCheckDog] = useState(true);
 
-  const handleToiletsChange = (event) => {
+  const handleToiletsChange = () => {
     // clicking! restroom will gone
     if (showToilets) {
       setShowToilets(false);
       console.log("no washroom: ", showToilets);
-      const noToilets = [...parkMarkers].filter((marker) => !marker.restrooms);
-      setFilteredMarkers(noToilets);
       setCheckToilet(false);
     } else {
       // bring the restroom back
       setShowToilets(true);
-      const noToilets = [...parkMarkers];
-      setFilteredMarkers(noToilets);
       setCheckToilet(true);
       console.log("park has washroom: ", showToilets);
     }
   };
 
-  const handlePlaygroundsChange = (event) => {
+  const handlePlaygroundsChange = () => {
     if (showPlaygrounds) {
       setShowPlaygrounds(false);
-      const noPlaygrounds = [...parkMarkers].filter(
-        (marker) => !marker.playground
-      );
-      setFilteredMarkers(noPlaygrounds);
       setCheckPlayground(false);
     } else {
-      // bring the restroom back
       setShowPlaygrounds(true);
-      const noPlaygrounds = [...parkMarkers];
-      setFilteredMarkers(noPlaygrounds);
       setCheckPlayground(true);
     }
   };
 
-  const handleDogFriendlyChange = (event) => {
+
+  const handleDogFriendlyChange = () => {
     if (showDogFriendly) {
       setShowDogFriendly(false);
-      const noDogfriendly = [...parkMarkers].filter(
-        (marker) => !marker.dog_friendly
-      );
-      setFilteredMarkers(noDogfriendly);
       setCheckDog(false);
     } else {
-      // bring the restroom back
       setShowDogFriendly(true);
-      const noDogfriendly = [...parkMarkers];
-      setFilteredMarkers(noDogfriendly);
       setCheckDog(true);
     }
   };
+
+
+  // filter helpers:
+  useEffect(() => {
+    let filtered = [...parkMarkers];
+
+    if (!showToilets) {
+      filtered = filtered.filter((marker) => !marker.restrooms);
+    }
+
+    if (!showPlaygrounds) {
+      filtered = filtered.filter((marker) => !marker.playground);
+    }
+
+    if (!showDogFriendly) {
+      filtered = filtered.filter((marker) => !marker.dog_friendly);
+    }
+
+    setFilteredMarkers(filtered);
+    console.log("flitered", filteredMarkers);
+  }, [showToilets, showPlaygrounds, showDogFriendly, parkMarkers]);
+
 
   // bring all the park data to the frontend
   useEffect(() => {
