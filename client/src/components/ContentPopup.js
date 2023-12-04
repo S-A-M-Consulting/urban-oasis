@@ -13,6 +13,7 @@ import SubmitUserReview from "./SubmitUserReview";
 import { calculateDistance } from "../helpers/calculateDis";
 import ImageCarousel from "./ImageCarousel";
 import { useAuth0 } from "@auth0/auth0-react";
+import Icons from "./Icons";
 
 
 // Add the specific icons you want to use to the library
@@ -60,14 +61,7 @@ export default function ContentPopup({ marker, userLocation }) {
           className="max-h-32 rounded-lg"
         />}
         <Rating rating={marker.google_rating} />
-        <div className="flex space-x-2 my-1">
-          {userLocation && parkLocation && <i>{calculateDistance(userLocation[0],userLocation[1], parkLocation[0],parkLocation[1]) } km</i>}
-          {marker.restrooms && <FontAwesomeIcon icon="fa-solid fa-toilet" />}
-          {marker.playground && (
-            <FontAwesomeIcon icon="fa-solid fa-child-reaching" />
-          )}
-          {marker.dog_friendly && <FontAwesomeIcon icon="fa-solid fa-dog" />}
-        </div>
+        <Icons marker={marker} userLocation={userLocation} parkLocation={parkLocation}/>
         <button
           className="btn btn-outline btn-xs btn-accent"
           onClick={() => document.getElementById("modal").showModal()}
@@ -77,18 +71,19 @@ export default function ContentPopup({ marker, userLocation }) {
       </div>
 
       {/** Modal Refactor later */}
-      <dialog id="modal" className="modal text-accent">
+      <dialog id="modal" className="modal">
         <div className="modal-box">
           <div className="modal-action">
             <form method="dialog">
               <button className="btn">Close</button>
             </form>
           </div>
-          <h1 className="font-bold text-xl">{marker.name}</h1>
-          <p className="py-4">{marker.street_address}</p>
+          <h1 className="font-bold text-4xl text-primary">{marker.name}</h1>
+          <h3 className="py-4 text-xl text-secondary">{marker.street_address}</h3>
           {imageData && <ImageCarousel imageData={imageData}/>}
+          <Icons marker={marker} userLocation={userLocation} parkLocation={parkLocation}/>
           { isAuthenticated && <SubmitUserReview park={marker} addReview={addReview} />}
-          <h2>Reviews</h2>
+          <h2 className="mt-4 text-lg text-accent">Reviews</h2>
           <div className="flex flex-col text-left">
             {reviews.map((review) => {
               return (
