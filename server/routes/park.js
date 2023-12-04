@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  queries.getParkByName(id)
+  queries.getParkById(id)
     .then((result) => {
       res.json(result);
     })

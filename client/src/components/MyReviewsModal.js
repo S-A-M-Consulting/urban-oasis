@@ -7,55 +7,51 @@ import ReviewCard from "./ReviewCard";
 export default function MyReviewsModal({ onClose }) {
   // move the auth0 user to the top of the file !!!
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const profilePic = isAuthenticated
-    ? user.picture
-    : process.env.PUBLIC_URL + "user.png";
+  const [userReviews, setUserReviews] = useState([]);
 
 // got the park name by parkId
-const getParkByParkId = async () => {
+const getParkByParkId = async (id) => {
     if (user) {
       try {
-        const userFromDatabase = await axios
-          .get(`/api/user/email/${user.email}`)
-          .then((response) => response.data);
-        const reviews = await axios
-          .get(`/api/review/user/${userFromDatabase.id}`)
-          .then((response) => response.data);
-        setUserReviews(reviews);
-        console.log(userReviews);
-        // setUserData(response.data);
+        const response = await axios.get(`/api/park/${id}`)
+          .then(response => response.data).then(data => data.name);
+          console.log("response from park name", response);
+        return response;
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        console.error("Error fetching park data:", error);
       }
     }
+    return ''; // Return an empty string if something goes wrong
   };
 
   
   // bring user reviews to the frontend
-  const [userReviews, setUserReviews] = useState([]);
+  
+
 
   const getUserReviews = async () => {
     if (user) {
       try {
-        const userFromDatabase = await axios
-          .get(`/api/user/email/${user.email}`)
+        const userFromDatabase = await axios.get(`/api/user/email/${user.email}`)
           .then((response) => response.data);
-        const reviews = await axios
-          .get(`/api/review/user/${userFromDatabase.id}`)
-          .then((response) => response.data);
+  
+        const reviewsResponse = await axios.get(`/api/review/user/${userFromDatabase.id}`);
+        const reviews = await Promise.all(reviewsResponse.data.map(async review => {
+          const parkName = await getParkByParkId(review.park_id);
+          return {...review, parkName};
+        }));
+  
+        console.log("reviews back from axios", reviews);
         setUserReviews(reviews);
-        console.log(userReviews);
-        // setUserData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     }
   };
 
-
   useEffect(() => {
     getUserReviews();
-  }, []);
+  }, [user]);
 
 
   // delete the review and pass to submituserReviewer
@@ -93,6 +89,7 @@ const getParkByParkId = async () => {
           {userReviews.map((review, index) => {
             return (
               <div key={index}>
+                <p>{review.parkName}</p>
                 <ReviewCard review={review} />
                 <button className="btn btn-outline btn-xs btn-accent" onClick={() => handleDelete(review.id)}>Delete</button>
               </div>

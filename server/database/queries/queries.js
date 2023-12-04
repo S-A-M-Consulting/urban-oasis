@@ -47,6 +47,10 @@ const getParkByPrefix = (searchTerm) => {
     .catch(error("getParksByPrefix"));
 };
 
+const getParkById = (id) => {
+  return db.query("SELECT * FROM parks WHERE id = $1", [id]).then(getOne).catch(error("getParkById"));
+};
+
 
 const addPark = (park) => {
   return insert(db, 'parks', park)
@@ -155,6 +159,7 @@ const queries = {
   deleteReview,
   getParkByName,
   getParkByPrefix,
+  getParkById
 };
 
 module.exports = queries; 
