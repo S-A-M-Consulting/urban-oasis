@@ -34,7 +34,7 @@ export default function Navbar(props) {
   const [searchChanged, setSearchChanged] = useState(false);
 
 
-  
+
 
 
   // handle the click on the map
@@ -93,7 +93,7 @@ export default function Navbar(props) {
     }
   }, [selectedPark]);
 
-  
+
 
   // useEffect(() => {
   //   if (user) {
@@ -188,10 +188,11 @@ export default function Navbar(props) {
             onChange={handleInputChange}
             className="input text-sm w-24 md:w-auto"
             style={{
-              backgroundImage: 'linear-gradient(transparent 60%, white 60%)',
+              backgroundImage: 'linear-gradient(transparent 50%, white 50%)',
               backgroundRepeat: 'no-repeat',
-              backgroundSize: '100% 1px',
+              backgroundSize: '100% 2px', // Adjusted size to make the line more visible
               backgroundPosition: 'bottom',
+              border: 'none', // Added to remove default input border which might hide the background
             }}
           />
           {/* Render suggestions dynamically */}
@@ -216,9 +217,9 @@ export default function Navbar(props) {
           </div>
         )}
       </div>
-      
+
       <div className="flex-none gap-2">
-      <button className="btn btn-xs btn-ghost" onClick={props.modalClick}>
+        <button className="btn btn-xs btn-ghost" onClick={props.modalClick}>
           My Reviews
         </button>
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}
