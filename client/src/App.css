@@ -5,11 +5,51 @@
 
 .leaflet-popup-content-wrapper {
   background: black;
-  color: white; 
+  color: white;
 }
 
 .checkbox {
   margin-left: 100px; /* Adjust the value as needed */
+}
+
+.suggestions {
+  /* Existing styles */
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-top: 8px;
+  width: 100%;
+  z-index: 9999; /* Set a high z-index value to ensure it's displayed above other elements */
+  /* Additional styles */
+  /* Add padding, max-height, and overflow-y to limit the height and provide scroll if needed */
+  padding: 8px 0;
+  max-height: 200px; /* Adjust this value according to your UI */
+  overflow-y: auto; /* Enable vertical scrolling if the suggestions exceed the height */
+}
+
+.suggestion-item {
+  /* Existing styles for suggestion items */
+}
+
+.suggestions {
+  /* Existing styles */
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-top: 8px;
+  width: 100%;
+  z-index: 9999; /* Set a high z-index value to ensure it's displayed above other elements */
+  /* Additional styles */
+  /* Add padding, max-height, and overflow-y to limit the height and provide scroll if needed */
+  padding: 8px 0;
+  max-height: 200px; /* Adjust this value according to your UI */
+  overflow-y: auto; /* Enable vertical scrolling if the suggestions exceed the height */
+}
+
+.suggestion-item {
+  /* Existing styles for suggestion items */
 }
 
 #checkboxDog {
