@@ -33,6 +33,21 @@ const getParkByName = (searchTerm) => {
     .catch(error("getParkByName"));
 };
 
+const getParkByPrefix = (searchTerm) => {
+  const searchTermLower = searchTerm.toLowerCase(); // Convert search term to lowercase
+
+  const query = `
+    SELECT * FROM parks
+    WHERE LOWER(name) LIKE $1 || '%'
+  `;
+
+  return db
+    .query(query, [searchTermLower])
+    .then(getAll) // Retrieve all matching records
+    .catch(error("getParksByPrefix"));
+};
+
+
 const addPark = (park) => {
   return insert(db, 'parks', park)
   .then(getOne)
@@ -139,6 +154,7 @@ const queries = {
   updateReview,
   deleteReview,
   getParkByName,
+  getParkByPrefix,
 };
 
 module.exports = queries; 
