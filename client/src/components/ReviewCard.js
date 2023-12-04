@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-export default function ReviewCard({ reviews, review, marker,deleteReview }) {
+export default function ReviewCard({ reviews, review, deleteReview }) {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
@@ -15,21 +15,7 @@ export default function ReviewCard({ reviews, review, marker,deleteReview }) {
     }
   }, []);
 
-  const handleDelete = (event) => {
-    event.preventDefault();
-    // Perform API call to delete the review from the backend
-    axios
-      .delete(`/api/review/${review.id}`)
-      .then(({ res }) => {
-        const updatedReviews = reviews.filter(
-          (data) => data.id !== review.id
-        );
-        deleteReview(updatedReviews);
-      })
-      .catch((error) => {
-        console.error("Error fetching User:", error);
-      });
-  };
+  
 
   return (
     <div>
