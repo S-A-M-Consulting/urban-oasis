@@ -12,6 +12,8 @@ import ReviewCard from "./ReviewCard";
 import SubmitUserReview from "./SubmitUserReview";
 import { calculateDistance } from "../helpers/calculateDis";
 import ImageCarousel from "./ImageCarousel";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 // Add the specific icons you want to use to the library
 
@@ -24,7 +26,7 @@ library.add(faDog);
 
 
 export default function ContentPopup({ marker, userLocation }) {
-  
+  const { isAuthenticated } = useAuth0();
   const [imageData, setImageData] = useState([]);
   const [reviews, setReviews] = useState([]);
   const parkLocation = [marker.latitude, marker.longitude];
@@ -85,7 +87,7 @@ export default function ContentPopup({ marker, userLocation }) {
           <h1 className="font-bold text-xl">{marker.name}</h1>
           <p className="py-4">{marker.street_address}</p>
           {imageData && <ImageCarousel imageData={imageData}/>}
-          <SubmitUserReview park={marker} addReview={addReview} />
+          { isAuthenticated && <SubmitUserReview park={marker} addReview={addReview} />}
           <h2>Reviews</h2>
           <div className="flex flex-col text-left">
             {reviews.map((review) => {

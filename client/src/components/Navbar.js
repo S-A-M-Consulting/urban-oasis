@@ -219,9 +219,9 @@ export default function Navbar(props) {
       </div>
 
       <div className="flex-none gap-2">
-        <button className="btn btn-xs btn-ghost" onClick={props.modalClick}>
+        { isAuthenticated && <button className="btn btn-xs btn-ghost" onClick={props.modalClick}>
           My Reviews
-        </button>
+        </button>}
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}
         <div className="dropdown dropdown-end">
           <div
