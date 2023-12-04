@@ -205,9 +205,36 @@ export default function Navbar(props) {
       </div>
       <div className="flex-1">
         <a className="btn btn-l text-xl">Urban Oasis</a>
-        <button className="btn btn-xs btn-ghost" onClick={handleOpenModal}>
-          My Reviews
-        </button>
+        <div className="form-control">
+          <input
+            type="text"
+            placeholder="Search for a park..."
+            value={parkSearch}
+            onKeyPress={handleKeyPress}
+            onChange={handleInputChange}
+            className="input input-bordered text-sm w-24 md:w-auto"
+          />
+          {/* Render suggestions dynamically */}
+          {suggestions.length > 0 && (
+            <ul className="suggestions absolute bg-white shadow-md rounded mt-1 p-2 w-full top-16">
+              {console.log("hit in the popup")}
+              {suggestions.map((suggestion, index) => (
+                <li
+                  key={index}
+                  className="suggestion-item rounded-md p-1 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => handleSuggestionClick(suggestion.name)}
+                >
+                  {suggestion.name /* Render suggestion details */}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        {searchError && (
+          <div className="absolute top-16 bg-red-200 border border-red-500 text-red-700 px-4 py-1 rounded shadow-md">
+            {searchError}
+          </div>
+        )}
       </div>
       {isModalOpen && (
         <MyReviewsModal
@@ -217,37 +244,10 @@ export default function Navbar(props) {
         />
       )}
       <div className="flex-none gap-2">
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search for a park..."
-            value={parkSearch}
-            onKeyPress={handleKeyPress}
-            onChange={handleInputChange}
-            className="input input-bordered w-24 md:w-auto"
-          />
-          {/* Render suggestions dynamically */}
-          {suggestions.length > 0 && (
-            <ul className="suggestions absolute bg-white shadow-md rounded mt-1 p-2 w-full top-16">
-              {console.log("hit in the popup")}
-              {suggestions.map((suggestion, index) => (
-                <li
-                  key={index}
-                  className="suggestion-item"
-                  onClick={() => handleSuggestionClick(suggestion.name)}
-                >
-                  {suggestion.name /* Render suggestion details */}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+      <button className="btn btn-xs btn-ghost" onClick={handleOpenModal}>
+          My Reviews
+        </button>
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-        {searchError && (
-          <div className="absolute top-16 bg-red-200 border border-red-500 text-red-700 px-4 py-1 rounded shadow-md">
-            {searchError}
-          </div>
-        )}
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
