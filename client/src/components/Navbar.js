@@ -6,20 +6,64 @@ import { useContext } from "react";
 import { debounce } from 'lodash'; // Import the debounce function from lodash
 
 
-import "tailwindcss/tailwind.css";
-import "daisyui/dist/full.css";
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
+
+
+import 'tailwindcss/tailwind.css';
+import 'daisyui/dist/full.css';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 import { useAuth0 } from "@auth0/auth0-react";
 //import './Navbar.css';
 
+import MyReviewsModal from "./MyReviewsModal";
+
+
 export default function Navbar(props) {
+  // move the auth0 user to the top of the file !!!
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const profilePic = isAuthenticated
+    ? user.picture
+    : process.env.PUBLIC_URL + "user.png";
+
+
   const [parkSearch, setParkSearch] = useState("");
   const [selectedPark, setSelectedPark] = useState([]);
   const { setClickTrigger } = useContext(MapContext);
   const [searchError, setSearchError] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [searchChanged, setSearchChanged] = useState(false);
 
+  //add for review modal
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userReviews, setUserReviews] = useState([]);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+    getUserReviews();
+  };
+
+ // add this new function
+  const getUserReviews = async () => {
+    if (user) {
+      try {
+        const userFromDatabase = await axios
+          .get(`/api/user/email/${user.email}`)
+          .then((response) => response.data);
+        const reviews = await axios
+          .get(`/api/review/user/${userFromDatabase.id}`)
+          .then((response) => response.data);
+        setUserReviews(reviews);
+        console.log(reviews);
+        // setUserData(response.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+  }
+
+
+  // handle the click on the map
   const handleMarkerClick = (coords) => {
     setClickTrigger(coords);
   };
@@ -75,11 +119,7 @@ export default function Navbar(props) {
     }
   }, [selectedPark]);
 
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  //console.log("user", user);
-  const profilePic = isAuthenticated
-    ? user.picture
-    : process.env.PUBLIC_URL + "user.png";
+  
 
   // useEffect(() => {
   //   if (user) {
@@ -126,11 +166,33 @@ export default function Navbar(props) {
     }
   };
 
+  // const handleSuggestionClick = (name) => {
+  //   console.log("hit in the handleSuggestionClick", name);
+  //   setParkSearch(name); // Update the park search state
+  //   console.log("parkSearch in handle state is", parkSearch);
+  //   handleParkSearch(); // Perform a park search
+  //   setSuggestions([]); // Clear the suggestions
+  // };
+
+  // refactor the code:
   const handleSuggestionClick = (name) => {
+    console.log("hit in the handleSuggestionClick", name);
     setParkSearch(name); // Update the park search state
-    setSuggestions([]); // Clear the suggestions
-    handleParkSearch(); // Perform a park search
-  }
+    console.log("parkSearch in handle state is", parkSearch);
+    setSearchChanged(true); // Flag to trigger the actions in useEffect
+  };
+
+  const handleSearchActions = () => {
+    if (searchChanged) {
+      handleParkSearch(); // Perform actions based on the updated parkSearch
+      setSuggestions([]); // Clear the suggestions
+      setSearchChanged(false); // Reset the flag
+    }
+  };
+
+  useEffect(() => {
+    handleSearchActions();
+  }, [parkSearch]); // Only triggers when parkSearch changes
 
   return (
     <nav className="navbar bg-base-100">
@@ -142,8 +204,18 @@ export default function Navbar(props) {
         />
       </div>
       <div className="flex-1">
-        <a className="btn btn-lg btn-ghost text-xl">Urban Oasis</a>
+        <a className="btn btn-l text-xl">Urban Oasis</a>
+        <button className="btn btn-xs btn-ghost" onClick={handleOpenModal}>
+          My Reviews
+        </button>
       </div>
+      {isModalOpen && (
+        <MyReviewsModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          reviews={userReviews}
+        />
+      )}
       <div className="flex-none gap-2">
         <div className="form-control">
           <input
@@ -204,4 +276,6 @@ export default function Navbar(props) {
       </div>
     </nav>
   );
-}
+};
+
+

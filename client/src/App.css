@@ -48,9 +48,9 @@
   overflow-y: auto; /* Enable vertical scrolling if the suggestions exceed the height */
 }
 
-.suggestion-item {
-  /* Existing styles for suggestion items */
-}
+/* .suggestion-item { */
+  /* Existing styles for suggestion items
+} */
 
 #checkboxDog {
   margin-left: 95px; /* Adjust the value as needed */
