@@ -182,7 +182,7 @@ export default function Navbar(props) {
         <div className="form-control">
           <input
             type="text"
-            placeholder="Search for a park..."
+            placeholder=" Search for a park..."
             value={parkSearch}
             onKeyPress={handleKeyPress}
             onChange={handleInputChange}
