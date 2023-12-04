@@ -25,6 +25,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 // Add the specific icons you want to use to the library
 
+import MyReviewsModal from "./MyReviewsModal";
+
+
 library.add(faToilet);
 library.add(faChildReaching);
 library.add(faDog);
@@ -206,7 +209,13 @@ export default function Map(props) {
 
   return (
     <>
+     
       <div id="leaflet-container">
+      {props.isModalOpen && (
+        <div className="modal-wrapper">
+          <MyReviewsModal onClose={props.modalClick} />
+        </div>
+      )}
         <div
           className="dropdown dropdown-down dropdown-end btn-accent"
           style={{ position: "absolute", top: 118, right: 65, zIndex: 1000 }}

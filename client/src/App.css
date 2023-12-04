@@ -41,10 +41,27 @@
   
 }
 
-
-
+.searchError {
+  position: absolute;
+  margin-top: 8px;
+  width: fit-content;
+  z-index: 9999;
+  padding: 8px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
 
 
 #checkboxDog {
   margin-left: 95px; /* Adjust the value as needed */
+}
+
+
+/* Example CSS */
+.modal-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Ensure it's above other elements */
 }

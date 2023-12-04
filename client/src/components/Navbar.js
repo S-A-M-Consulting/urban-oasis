@@ -33,34 +33,8 @@ export default function Navbar(props) {
   const [suggestions, setSuggestions] = useState([]);
   const [searchChanged, setSearchChanged] = useState(false);
 
-  //add for review modal
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userReviews, setUserReviews] = useState([]);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-    getUserReviews();
-  };
-
- // add this new function
-  const getUserReviews = async () => {
-    if (user) {
-      try {
-        const userFromDatabase = await axios
-          .get(`/api/user/email/${user.email}`)
-          .then((response) => response.data);
-        const reviews = await axios
-          .get(`/api/review/user/${userFromDatabase.id}`)
-          .then((response) => response.data);
-        setUserReviews(reviews);
-        console.log(reviews);
-        // setUserData(response.data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    }
-  }
+  
 
 
   // handle the click on the map
@@ -204,7 +178,7 @@ export default function Navbar(props) {
         />
       </div>
       <div className="flex-1">
-        <a className="btn btn-l text-xl">Urban Oasis</a>
+        <h1 className="mx-2 text-xl">Urban Oasis</h1>
         <div className="form-control">
           <input
             type="text"
@@ -212,7 +186,13 @@ export default function Navbar(props) {
             value={parkSearch}
             onKeyPress={handleKeyPress}
             onChange={handleInputChange}
-            className="input input-bordered text-sm w-24 md:w-auto"
+            className="input text-sm w-24 md:w-auto"
+            style={{
+              backgroundImage: 'linear-gradient(transparent 60%, white 60%)',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: '100% 1px',
+              backgroundPosition: 'bottom',
+            }}
           />
           {/* Render suggestions dynamically */}
           {suggestions.length > 0 && (
@@ -231,20 +211,14 @@ export default function Navbar(props) {
           )}
         </div>
         {searchError && (
-          <div className="absolute top-16 bg-red-200 border border-red-500 text-red-700 px-4 py-1 rounded shadow-md">
+          <div className="searchError absolute top-16 bg-red-200 border border-red-500 text-red-700 px-4 py-1 rounded shadow-md">
             {searchError}
           </div>
         )}
       </div>
-      {isModalOpen && (
-        <MyReviewsModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          reviews={userReviews}
-        />
-      )}
+      
       <div className="flex-none gap-2">
-      <button className="btn btn-xs btn-ghost" onClick={handleOpenModal}>
+      <button className="btn btn-xs btn-ghost" onClick={props.modalClick}>
           My Reviews
         </button>
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}

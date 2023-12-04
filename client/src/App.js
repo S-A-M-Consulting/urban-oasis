@@ -8,12 +8,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
 import MapContext from "./components/MapContext";
+import MyReviewsModal from "./components/MyReviewsModal";
 
 function App() {
   const defaultLocation = [49.044078046834706, -122.81547546331375];
   const [mapCenter, setMapCenter] = useState(defaultLocation);
   const [clickTrigger, setClickTrigger] = useState(null);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   const updateMapCenter = (newCenter) => {
@@ -51,8 +52,8 @@ function App() {
   return (
     <>
       <MapContext.Provider value={{ clickTrigger, setClickTrigger }}>
-        <Navbar updateMapCenter={updateMapCenter} />
-        <Map updateMapCenter={updateMapCenter} mapCenter={mapCenter} />
+        <Navbar updateMapCenter={updateMapCenter} modalClick={() => setIsModalOpen(true)}/>
+        <Map updateMapCenter={updateMapCenter} mapCenter={mapCenter} isModalOpen={isModalOpen} modalClick={() => setIsModalOpen(false)}/>
       </MapContext.Provider>
     </>
   );
