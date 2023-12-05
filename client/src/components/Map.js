@@ -223,7 +223,7 @@ export default function Map(props) {
           <div
             tabIndex={0}
             role="button"
-            className="btn btn-xs btn-accent mb-4"
+            className="btn btn-xl btn-accent mb-4"
           >
             Park Categories
           </div>
@@ -284,7 +284,7 @@ export default function Map(props) {
         </div>
 
         <button
-          className="btn btn-primary btn-xs btn-accent mb-4"
+          className="btn btn-primary btn-xl btn-accent mb-4"
           onClick={updateMapToUserLocation}
           style={{ position: "absolute", bottom: 20, right: 10, zIndex: 1000 }}
         >
