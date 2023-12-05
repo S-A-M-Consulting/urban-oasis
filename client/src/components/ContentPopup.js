@@ -78,7 +78,7 @@ export default function ContentPopup({ marker, userLocation }) {
               <button className="btn">Close</button>
             </form>
           </div>
-          <h1 className="font-bold text-4xl text-primary">{marker.name}</h1>
+          <h1 className="font-bold text-4xl text-secondary">{marker.name}</h1>
           <h3 className="py-4 text-xl text-secondary">{marker.street_address}</h3>
           {imageData && <ImageCarousel imageData={imageData}/>}
           <Icons marker={marker} userLocation={userLocation} parkLocation={parkLocation}/>
