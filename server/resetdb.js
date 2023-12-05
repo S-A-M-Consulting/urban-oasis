@@ -73,11 +73,33 @@ const runSeedFiles = async () => {
   
 };
 
+const collectParkData = async (id, place_id) => {
+  const endpoint = `https://maps.googleapis.com/maps/api/place/details/json?&key=${process.env.MAPS_API_KEY}&place_id=${place_id}`;
+  const parkResponse = await axios.get(endpoint);
+  const parkData = parkResponse.data.result.reviews;
+
+  for ( const park of parkData) {
+    const {text, rating} = park;
+    const reviewData = {
+      review: text,
+      rating: rating,
+      user_id: Math.floor(Math.random() * 20) + 1,
+      park_id: id
+    };
+
+    axios.post('http://localhost:8080/api/review', reviewData);
+  }
+}
+
 const runResetDb = async () => {
   try {
 
     await runSchemaFiles();
     await runSeedFiles();
+    const parks = await db.query(`SELECT id, place_id FROM parks`);
+    for (const park of parks.rows) {
+      await collectParkData(park.id, park.place_id);
+    }
     process.exit();
   } catch (error) {
     console.error(error);
@@ -88,3 +110,4 @@ const runResetDb = async () => {
 }
 
 runResetDb();
+//collectParkData('ChIJxT3tkKXEhVQRcCh8FbWj0xI');
