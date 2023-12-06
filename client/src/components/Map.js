@@ -6,9 +6,12 @@ import {
   Popup,
   LayersControl,
   useMap,
+  Polyline,
 } from "react-leaflet";
 
-import { Icon } from "leaflet";
+import { Icon } from "leaflet"; // Import Leaflet Icon (L) here
+import L from "leaflet";
+
 import MarkerClusterGroup from "react-leaflet-cluster";
 import axios from "axios";
 import { convertCoordinatesToList } from "../helpers/frontendHelper";
@@ -26,6 +29,7 @@ import {
 // Add the specific icons you want to use to the library
 
 import MyReviewsModal from "./MyReviewsModal";
+// import mapboxgl from "mapbox-gl";
 
 
 library.add(faToilet);
@@ -53,6 +57,8 @@ function ChangeMapView({ center }) {
 }
 
 export default function Map(props) {
+  const mapRef = useRef(null); // Initialize a reference for your Leaflet map
+
   const defaultLocation = [49.044078046834706, -122.81547546331375];
 
   const [userLocation, setUserLocation] = useState(defaultLocation);
@@ -64,6 +70,7 @@ export default function Map(props) {
   const [checkToilet, setCheckToilet] = useState(true);
   const [checkPlayground, setCheckPlayground] = useState(true);
   const [checkDog, setCheckDog] = useState(true);
+  const [coordinates, setCoordinates] = useState([]);
 
   const handleToiletsChange = () => {
     // clicking! restroom will gone
@@ -207,15 +214,19 @@ export default function Map(props) {
     iconSize: [38, 38],
   });
 
+  // handle the coordinates for the route
+  const handleCoordinates = (arr) => {
+    setCoordinates(arr);
+  }
+
   return (
     <>
-     
       <div id="leaflet-container">
-      {props.isModalOpen && (
-        <div className="modal-wrapper">
-          <MyReviewsModal onClose={props.modalClick} />
-        </div>
-      )}
+        {props.isModalOpen && (
+          <div className="modal-wrapper">
+            <MyReviewsModal onClose={props.modalClick} />
+          </div>
+        )}
         <div
           className="dropdown dropdown-down dropdown-end btn-accent"
           style={{ position: "absolute", top: 118, right: 65, zIndex: 1000 }}
@@ -319,7 +330,7 @@ export default function Map(props) {
                 url="https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg"
               />
             </BaseLayer>
-
+            <Polyline pathOptions={{ color: "blue" }} positions={coordinates} />
             <MarkerClusterGroup chunkedLoading>
               {filteredMarkers.map((marker) => (
                 <Marker
@@ -333,7 +344,11 @@ export default function Map(props) {
                   }}
                 >
                   <Popup offset={[-10, -20]}>
-                    <ContentPopup marker={marker} userLocation={userLocation} />
+                    <ContentPopup
+                      marker={marker}
+                      userLocation={userLocation}
+                      handleCoordinates={handleCoordinates}
+                    />
                   </Popup>
                 </Marker>
               ))}
