@@ -15,20 +15,17 @@ import ImageCarousel from "./ImageCarousel";
 import { useAuth0 } from "@auth0/auth0-react";
 import Icons from "./Icons";
 
-
-
-
 // Add the specific icons you want to use to the library
 
-library.add(faToilet)
+library.add(faToilet);
 library.add(faChildReaching);
 library.add(faDog);
 
-
-
-
-
-export default function ContentPopup({ marker, userLocation, handleCoordinates }) {
+export default function ContentPopup({
+  marker,
+  userLocation,
+  handleCoordinates,
+}) {
   const { isAuthenticated } = useAuth0();
   const [imageData, setImageData] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -66,7 +63,6 @@ export default function ContentPopup({ marker, userLocation, handleCoordinates }
   };
 
   const handleRenderRoute = async () => {
-    
     const userLocationRoute = swapAndConvertToNumber(userLocation);
     const parkLocationRoute = swapAndConvertToNumber(parkLocation);
     console.log("userLocation: ", userLocationRoute);
@@ -75,16 +71,16 @@ export default function ContentPopup({ marker, userLocation, handleCoordinates }
     const apiEndpoint = `https://api.mapbox.com/directions/v5/mapbox/driving/${userLocationRoute[0]}%2C${userLocationRoute[1]}%3B${parkLocationRoute[0]}%2C${parkLocationRoute[1]}?alternatives=false&geometries=geojson&language=en&overview=full&steps=true&access_token=${process.env.REACT_APP_ROUTE_API_KEY}`;
 
     console.log("apiEndpoint: ", apiEndpoint);
-    const response = await axios.get(apiEndpoint).then((response) => response.data);
+    const response = await axios
+      .get(apiEndpoint)
+      .then((response) => response.data);
     console.log("response: ", response);
     const coordinates = response.routes[0].geometry.coordinates;
     console.log("coordinates: ", coordinates);
     const correctCoordinates = swapCoordinates(coordinates);
     console.log("correctCoordinates: ", correctCoordinates);
     handleCoordinates(correctCoordinates);
-  }
-
-
+  };
 
   // const coordinatesRes = [
   //   [
@@ -125,25 +121,27 @@ export default function ContentPopup({ marker, userLocation, handleCoordinates }
             className="max-h-32 rounded-lg"
           />
         )}
-        <button
-          className="btn btn-primary btn-xl btn-accent mb-4"
-          onClick={handleRenderRoute}
-          style={{ position: "absolute", bottom: 50, right: 10, zIndex: 1000 }}
-        >
-          Find Route to Park
-        </button>
+
         <Rating rating={marker.google_rating} />
         <Icons
           marker={marker}
           userLocation={userLocation}
           parkLocation={parkLocation}
         />
-        <button
-          className="btn btn-outline btn-xs btn-accent"
-          onClick={() => document.getElementById("modal").showModal()}
-        >
-          More Info
-        </button>
+        <div className="flex justify-row space-x-2 my-2">
+          <button
+            className="btn btn-outline btn-xs btn-accent"
+            onClick={() => document.getElementById("modal").showModal()}
+          >
+            More Info
+          </button>
+          <button
+            className="btn btn-outline btn-xs btn-accent"
+            onClick={handleRenderRoute}
+          >
+            Find Route
+          </button>
+        </div>
       </div>
 
       {/** Modal Refactor later */}

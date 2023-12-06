@@ -216,7 +216,7 @@ export default function Map(props) {
 
   // handle the coordinates for the route
   const handleCoordinates = (arr) => {
-    setCoordinates(arr);
+      setCoordinates(arr);
   }
 
   return (
