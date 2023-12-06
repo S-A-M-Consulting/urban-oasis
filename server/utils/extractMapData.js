@@ -7,7 +7,8 @@ const path = require('path');
 // Function to make the initial request
 async function makeInitialRequest() {
   const apiEndpoint =
-    process.env.MAPS_API_ENDPOINT + process.env.MAPS_API_SEARCH_PARAMS;
+    process.env.MAPS_API_ENDPOINT +
+    process.env.MAPS_API_KEY + process.env.MAPS_API_SEARCH_PARAMS;
   console.log("1st apiEndpoint", apiEndpoint);
   const data = await axios.get(apiEndpoint).then((response) => response.data);
   console.log("initial pages got: ", data.results.length);
@@ -35,7 +36,7 @@ async function makeInitialRequest() {
 
 // Function to make subsequent requests using the next_page_token
 async function fetchNextPage(nextPageToken, allResults) {
-  const apiEndpoint = `${process.env.MAPS_API_ENDPOINT}${process.env.MAPS_API_SEARCH_PARAMS}&pagetoken=${nextPageToken}`;
+  const apiEndpoint = `${process.env.MAPS_API_ENDPOINT}${process.env.MAPS_API_KEY}${process.env.MAPS_API_SEARCH_PARAMS}&pagetoken=${nextPageToken}`;
 
   console.log("apiEndpoint", apiEndpoint);
   const data = await axios.get(apiEndpoint).then((response) => response.data);
@@ -57,18 +58,6 @@ async function fetchNextPage(nextPageToken, allResults) {
 
   // Return the concatenated results
   return allResults.flat();
-}
-
-// Function to download images using photo_reference
-function downloadImages(results) {
-  results.forEach(place => {
-    if (place.photos && place.photos.length > 0) {
-      place.photos.forEach(photo => {
-        const photoReference = photo.photo_reference;
-        downloadImage(photoReference);
-      });
-    }
-  });
 }
 
 // Function to download a single image using photo_reference
