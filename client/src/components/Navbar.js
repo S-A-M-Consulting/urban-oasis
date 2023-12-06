@@ -21,9 +21,11 @@ import MyReviewsModal from "./MyReviewsModal";
 export default function Navbar(props) {
   // move the auth0 user to the top of the file !!!
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const profilePic = isAuthenticated
-    ? user.picture
-    : process.env.PUBLIC_URL + "user.png";
+  
+
+  // const profilePic = isAuthenticated
+  //   ? user.picture
+  //   : process.env.PUBLIC_URL + "user.png";
 
 
   const [parkSearch, setParkSearch] = useState("");
@@ -34,7 +36,15 @@ export default function Navbar(props) {
   const [searchChanged, setSearchChanged] = useState(false);
 
 
+  let profilePic = process.env.PUBLIC_URL + "user.png";
 
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      profilePic = axios.get(`/api/user/email/${user.email}`)
+        .then((result) => result.data)
+        .then((data) => console.log("data", data))
+        .catch((err) => console.log(err.message));
+    }}, []);
 
 
   // handle the click on the map

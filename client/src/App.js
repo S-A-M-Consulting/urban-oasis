@@ -28,12 +28,15 @@ function App() {
       axios
         .get(`/api/user/email/${user.email}`)
         .then((result) => result.data)
-        .then((data) => {
+        .then( async (data) => {
           if (!data) {
+            const image = await axios.get(user.picture, { responseType: "arraybuffer" })
+              .then((result) => result.data).then((data) => "data:image/jpeg;base64," + data.toString("base64"));
+
             const newUser = {
               email: user.email,
               name: user.name,
-              photo: user.picture,
+              photo: image,
               password: user.sub,
             };
             axios
