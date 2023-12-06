@@ -4,9 +4,10 @@ Urban Oasis (UO) is a single page map application for finding parks in your area
 
 
 ![Urban Oasis Screenshot](docs/urban_oasis_main_screenshot.png)
-![Urban Oasis Screenshot](docs/urban_oasis_filter_screenshot.png)
-![Urban Oasis Screenshot](docs/urban_oasis_route_screenshot.png)
 ![Urban Oasis Screenshot](docs/urban_oasis_detail_screenshot.png)
+![Urban Oasis Screenshot](docs/urban_oasis_route_screenshot.png)
+![Urban Oasis Screenshot](docs/urban_oasis_filter_screenshot.png)
+
 
 ## Getting Started
 
