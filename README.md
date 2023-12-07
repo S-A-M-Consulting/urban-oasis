@@ -1,6 +1,6 @@
 # Urban Oasis - Lighthouse Labs Final Project
 
-Urban Oasis (UO) is a single page map application for finding parks in your area. You can filter your view of parks by three categories: child friendly bathroom fiendly, and dog friendly. UO uses external API calls to provide the user with park images, locations, and reviews. You can leave reviews for parks, search for parks with auto-suggesting park names, and get directions to a park. This project was built by Mitch Johnston, Yiqun (Albert) Huang, and Steve Fraser.
+Urban Oasis (UO) is a single page map application for finding parks in your area. You can filter your view of parks by three categories: child friendly, bathroom friendly, and dog friendly. UO uses external API calls to provide the user with park images, locations, and reviews. You can leave reviews for parks, search for parks with auto-suggesting park names, and get directions to a park. This project was built by Mitch Johnston, Yiqun (Albert) Huang, and Steve Fraser.
 
 
 ![Urban Oasis Screenshot](docs/urban_oasis_main_screenshot.png)
